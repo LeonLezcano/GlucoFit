@@ -69,6 +69,10 @@
           No hay sesiones previas registradas en este dispositivo.
         </div>
       </div>
+
+      <div class="repdb-attribution">
+        Ilustraciones biomecánicas & anatómicas: RepDB Exercise Dataset (CC BY) • Guía clínica ADA/EASD.
+      </div>
     </section>
 
     <!-- Vista 2: CHECK-IN GLUCÉMICO (Pre-Entreno) -->
@@ -143,6 +147,18 @@
             <div id="activeExerciseSubtitle" style="font-size: 0.8rem; color: var(--cyan-400); font-weight: 600; margin-top: 2px;">Cuádriceps • Máquina guiada</div>
           </div>
           <span id="activeExerciseGlut4" class="glut4-pill">GLUT4: 5/5</span>
+        </div>
+
+        <!-- Visor Biomecánico Dual (Animación Start/Peak + Mapa Muscular) -->
+        <div class="biomech-viewer" id="activeBiomechViewer">
+          <div class="biomech-stage" id="activeStageBox" title="Toca para alternar Inicio / Contracción">
+            <img id="activeExerciseImg" src="assets/exercises/leg-press-start.webp" alt="Demostración del ejercicio">
+            <div id="activePhasePill" class="phase-pill">● Fase: Inicio</div>
+          </div>
+          <div class="muscle-badge-card">
+            <img id="activeMuscleImg" src="assets/muscles/quadriceps.webp" alt="Músculo trabajado">
+            <div id="activeMuscleLabel" class="muscle-badge-label">Cuádriceps</div>
+          </div>
         </div>
 
         <!-- Instrucciones y Checklist de Postura -->

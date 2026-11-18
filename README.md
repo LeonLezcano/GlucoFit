@@ -1,8 +1,8 @@
 # ⚡ GlucoFit — Coach de Fuerza & Guía Biomecánica para Diabetes Tipo 2
 
-> **Versión:** `v1.0.00`  
+> **Versión:** `v1.0.01`  
 > **Arquetipo:** Medical-Sports Progressive Web App (PWA) Mobile-First  
-> **Estándar:** AiAppFactory Invariants, Zero-Sink DOM Security, 5-Layer Testing Harness (75 Tests PASS)
+> **Estándar:** AiAppFactory Invariants, Zero-Sink DOM Security, 5-Layer Testing Harness (76 Tests PASS)
 
 ---
 

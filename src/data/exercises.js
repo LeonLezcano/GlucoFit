@@ -8,6 +8,9 @@ export const EXERCISES = [
   // ===================== PIERNAS: CUÁDRICEPS & CADENA ANTERIOR =====================
   {
     id: 'prensa-45',
+    startImage: 'assets/exercises/leg-press-start.webp',
+    peakImage: 'assets/exercises/leg-press-peak.webp',
+    muscleImage: 'assets/muscles/quadriceps.webp',
     name: 'Prensa de Piernas a 45°',
     englishName: 'Leg Press 45',
     category: 'piernas',
@@ -31,6 +34,9 @@ export const EXERCISES = [
   },
   {
     id: 'extension-cuadriceps',
+    startImage: 'assets/exercises/leg-extension-start.webp',
+    peakImage: 'assets/exercises/leg-extension-peak.webp',
+    muscleImage: 'assets/muscles/quadriceps.webp',
     name: 'Extensión de Cuádriceps en Máquina',
     englishName: 'Leg Extension',
     category: 'piernas',
@@ -54,6 +60,9 @@ export const EXERCISES = [
   },
   {
     id: 'sentadilla-goblet',
+    startImage: 'assets/exercises/db-goblet-squat-start.webp',
+    peakImage: 'assets/exercises/db-goblet-squat-peak.webp',
+    muscleImage: 'assets/muscles/quadriceps.webp',
     name: 'Sentadilla Goblet con Mancuerna',
     englishName: 'Goblet Squat',
     category: 'piernas',
@@ -77,6 +86,9 @@ export const EXERCISES = [
   },
   {
     id: 'prensa-horizontal',
+    startImage: 'assets/exercises/horizontal-leg-press-start.webp',
+    peakImage: 'assets/exercises/horizontal-leg-press-peak.webp',
+    muscleImage: 'assets/muscles/quadriceps.webp',
     name: 'Prensa Horizontal Sentada',
     englishName: 'Seated Leg Press',
     category: 'piernas',
@@ -102,6 +114,9 @@ export const EXERCISES = [
   // ===================== PIERNAS: ISQUIOSURALES & GLÚTEOS =====================
   {
     id: 'curl-femoral-tumbado',
+    startImage: 'assets/exercises/leg-curl-start.webp',
+    peakImage: 'assets/exercises/leg-curl-peak.webp',
+    muscleImage: 'assets/muscles/hamstrings.webp',
     name: 'Curl Femoral Acostado (Máquina)',
     englishName: 'Lying Leg Curl',
     category: 'piernas',
@@ -125,6 +140,9 @@ export const EXERCISES = [
   },
   {
     id: 'curl-femoral-sentado',
+    startImage: 'assets/exercises/seated-leg-curl-start.webp',
+    peakImage: 'assets/exercises/seated-leg-curl-peak.webp',
+    muscleImage: 'assets/muscles/hamstrings.webp',
     name: 'Curl Femoral Sentado',
     englishName: 'Seated Leg Curl',
     category: 'piernas',
@@ -148,6 +166,9 @@ export const EXERCISES = [
   },
   {
     id: 'peso-muerto-rumano-mancuernas',
+    startImage: 'assets/exercises/dumbbell-romanian-deadlift-start.webp',
+    peakImage: 'assets/exercises/dumbbell-romanian-deadlift-peak.webp',
+    muscleImage: 'assets/muscles/hamstrings.webp',
     name: 'Peso Muerto Rumano con Mancuernas',
     englishName: 'Dumbbell Romanian Deadlift',
     category: 'piernas',
@@ -171,6 +192,9 @@ export const EXERCISES = [
   },
   {
     id: 'hip-thrust-maquina',
+    startImage: 'assets/exercises/dumbbell-hip-thrust-start.webp',
+    peakImage: 'assets/exercises/dumbbell-hip-thrust-peak.webp',
+    muscleImage: 'assets/muscles/gluteus-maximus.webp',
     name: 'Hip Thrust / Empuje de Cadera en Máquina',
     englishName: 'Machine Hip Thrust',
     category: 'piernas',
@@ -196,6 +220,9 @@ export const EXERCISES = [
   // ===================== ESPALDA: DORSALES, ROMBOIDES & TRAPECIO =====================
   {
     id: 'jalon-al-pecho-polea',
+    startImage: 'assets/exercises/lat-pulldown-start.webp',
+    peakImage: 'assets/exercises/lat-pulldown-peak.webp',
+    muscleImage: 'assets/muscles/latissimus-dorsi.webp',
     name: 'Jalón al Pecho en Polea Alta',
     englishName: 'Lat Pulldown',
     category: 'espalda',
@@ -219,6 +246,9 @@ export const EXERCISES = [
   },
   {
     id: 'remo-polea-baja-sentado',
+    startImage: 'assets/exercises/seated-cable-row-start.webp',
+    peakImage: 'assets/exercises/seated-cable-row-peak.webp',
+    muscleImage: 'assets/muscles/rhomboids.webp',
     name: 'Remo Sentado en Polea Baja (Agarre V)',
     englishName: 'Seated Cable Row',
     category: 'espalda',
@@ -242,6 +272,9 @@ export const EXERCISES = [
   },
   {
     id: 'remo-maquina-apoyo-pecho',
+    startImage: 'assets/exercises/chest-supported-machine-row-start.webp',
+    peakImage: 'assets/exercises/chest-supported-machine-row-peak.webp',
+    muscleImage: 'assets/muscles/latissimus-dorsi.webp',
     name: 'Remo en Máquina con Apoyo al Pecho',
     englishName: 'Chest Supported Machine Row',
     category: 'espalda',
@@ -265,6 +298,9 @@ export const EXERCISES = [
   },
   {
     id: 'remo-unilateral-mancuerna',
+    startImage: 'assets/exercises/single-arm-chest-supported-dumbbell-row-start.webp',
+    peakImage: 'assets/exercises/single-arm-chest-supported-dumbbell-row-peak.webp',
+    muscleImage: 'assets/muscles/latissimus-dorsi.webp',
     name: 'Remo Unilateral con Mancuerna en Banco',
     englishName: 'Single Arm Dumbbell Row',
     category: 'espalda',
@@ -290,6 +326,9 @@ export const EXERCISES = [
   // ===================== PECHO: PECTORAL MAYOR & TRÍCEPS =====================
   {
     id: 'press-pecho-maquina-sentado',
+    startImage: 'assets/exercises/chest-press-machine-start.webp',
+    peakImage: 'assets/exercises/chest-press-machine-peak.webp',
+    muscleImage: 'assets/muscles/pectoralis-major.webp',
     name: 'Press de Pecho en Máquina Sentado',
     englishName: 'Seated Chest Press Machine',
     category: 'pecho',
@@ -313,6 +352,9 @@ export const EXERCISES = [
   },
   {
     id: 'press-banca-plana-mancuernas',
+    startImage: 'assets/exercises/db-bench-press-start.webp',
+    peakImage: 'assets/exercises/db-bench-press-peak.webp',
+    muscleImage: 'assets/muscles/pectoralis-major.webp',
     name: 'Press de Pecho Plano con Mancuernas',
     englishName: 'Flat Dumbbell Bench Press',
     category: 'pecho',
@@ -336,6 +378,9 @@ export const EXERCISES = [
   },
   {
     id: 'aperturas-peck-deck',
+    startImage: 'assets/exercises/pec-deck-start.webp',
+    peakImage: 'assets/exercises/pec-deck-peak.webp',
+    muscleImage: 'assets/muscles/pectoralis-major.webp',
     name: 'Aperturas en Máquina Peck-Deck (Contractor)',
     englishName: 'Pec Deck Fly Machine',
     category: 'pecho',
@@ -361,6 +406,9 @@ export const EXERCISES = [
   // ===================== HOMBROS: DELTOIDES =====================
   {
     id: 'press-hombros-maquina',
+    startImage: 'assets/exercises/machine-shoulder-press-start.webp',
+    peakImage: 'assets/exercises/machine-shoulder-press-peak.webp',
+    muscleImage: 'assets/muscles/anterior-deltoid.webp',
     name: 'Press de Hombros en Máquina Sentado',
     englishName: 'Machine Shoulder Press',
     category: 'hombros',
@@ -384,6 +432,9 @@ export const EXERCISES = [
   },
   {
     id: 'elevaciones-laterales-mancuernas',
+    startImage: 'assets/exercises/lateral-raise-start.webp',
+    peakImage: 'assets/exercises/lateral-raise-peak.webp',
+    muscleImage: 'assets/muscles/lateral-deltoid.webp',
     name: 'Elevaciones Laterales con Mancuernas',
     englishName: 'Dumbbell Lateral Raise',
     category: 'hombros',
@@ -407,6 +458,9 @@ export const EXERCISES = [
   },
   {
     id: 'face-pull-polea',
+    startImage: 'assets/exercises/face-pull-start.webp',
+    peakImage: 'assets/exercises/face-pull-peak.webp',
+    muscleImage: 'assets/muscles/posterior-deltoid.webp',
     name: 'Face Pull en Polea Alta con Cuerda',
     englishName: 'Cable Face Pull',
     category: 'hombros',
@@ -432,6 +486,9 @@ export const EXERCISES = [
   // ===================== BRAZOS: BÍCEPS & TRÍCEPS =====================
   {
     id: 'curl-biceps-mancuernas-banco',
+    startImage: 'assets/exercises/seated-dumbbell-curl-start.webp',
+    peakImage: 'assets/exercises/seated-dumbbell-curl-peak.webp',
+    muscleImage: 'assets/muscles/biceps-brachii.webp',
     name: 'Curl de Bíceps con Mancuernas (De Pie o Sentado)',
     englishName: 'Dumbbell Bicep Curl',
     category: 'brazos',
@@ -455,6 +512,9 @@ export const EXERCISES = [
   },
   {
     id: 'extension-triceps-polea-cuerda',
+    startImage: 'assets/exercises/tricep-pushdown-start.webp',
+    peakImage: 'assets/exercises/tricep-pushdown-peak.webp',
+    muscleImage: 'assets/muscles/triceps-brachii.webp',
     name: 'Extensión de Tríceps en Polea Alta con Cuerda',
     englishName: 'Triceps Rope Pushdown',
     category: 'brazos',
@@ -480,6 +540,9 @@ export const EXERCISES = [
   // ===================== CORE & ESTABILIDAD METABÓLICA =====================
   {
     id: 'plancha-isometrica-banco',
+    startImage: 'assets/exercises/plank-main.webp',
+    peakImage: 'assets/exercises/plank-main.webp',
+    muscleImage: 'assets/muscles/rectus-abdominis.webp',
     name: 'Plancha Abdominal en Banco o Suelo',
     englishName: 'Plank on Bench or Floor',
     category: 'core',
@@ -503,6 +566,9 @@ export const EXERCISES = [
   },
   {
     id: 'press-pallof-polea',
+    startImage: 'assets/exercises/cable-pallof-press-start.webp',
+    peakImage: 'assets/exercises/cable-pallof-press-peak.webp',
+    muscleImage: 'assets/muscles/obliques.webp',
     name: 'Press Pallof Antirrotación en Polea',
     englishName: 'Pallof Press',
     category: 'core',
@@ -526,6 +592,9 @@ export const EXERCISES = [
   },
   {
     id: 'paseo-del-granjero',
+    startImage: 'assets/exercises/dumbbell-farmers-walk-main.webp',
+    peakImage: 'assets/exercises/dumbbell-farmers-walk-main.webp',
+    muscleImage: 'assets/muscles/trapezius.webp',
     name: 'Paseo del Granjero con Mancuernas',
     englishName: 'Farmers Walk',
     category: 'core',

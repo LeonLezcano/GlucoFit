@@ -71,6 +71,13 @@ class GlucoFitApp {
     this.activeExerciseTitle = document.getElementById('activeExerciseTitle');
     this.activeExerciseSubtitle = document.getElementById('activeExerciseSubtitle');
     this.activeExerciseGlut4 = document.getElementById('activeExerciseGlut4');
+    this.activeStageBox = document.getElementById('activeStageBox');
+    this.activeExerciseImg = document.getElementById('activeExerciseImg');
+    this.activePhasePill = document.getElementById('activePhasePill');
+    this.activeMuscleImg = document.getElementById('activeMuscleImg');
+    this.activeMuscleLabel = document.getElementById('activeMuscleLabel');
+    this.biomechTimer = null;
+    this.biomechIsPeak = false;
     this.activeExerciseChecklist = document.getElementById('activeExerciseChecklist');
     this.activeExerciseMistakes = document.getElementById('activeExerciseMistakes');
     this.activeExerciseBreathing = document.getElementById('activeExerciseBreathing');
@@ -353,13 +360,16 @@ class GlucoFitApp {
 
       exercisesHtml += `
         <div class="exercise-card">
-          <div class="exercise-header">
-            <div>
-              <div style="font-size: 0.75rem; color: var(--emerald-400); font-weight: 700; text-transform: uppercase;">Ejercicio ${index + 1} de ${routine.exercises.length}</div>
-              <h4 style="font-size: 1.05rem; font-weight: 700; margin-top: 2px;">${Sanitizer.escapeHTML(exercise.name)}</h4>
-              <div style="font-size: 0.8rem; color: var(--text-muted);">${Sanitizer.escapeHTML(exercise.targetMuscle)} • ${Sanitizer.escapeHTML(exercise.equipment)}</div>
+          <div class="exercise-header" style="align-items: center; gap: 12px;">
+            <div style="width: 58px; height: 58px; border-radius: 10px; background: #f1f5f9; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid var(--border-subtle);">
+              <img src="${Sanitizer.sanitizeURL(exercise.startImage)}" alt="${Sanitizer.escapeHTML(exercise.name)}" style="width: 90%; height: 90%; object-fit: contain;">
             </div>
-            <span class="glut4-pill">GLUT4: ${exercise.glut4Score}/5</span>
+            <div style="flex: 1;">
+              <div style="font-size: 0.72rem; color: var(--emerald-400); font-weight: 700; text-transform: uppercase;">Ejercicio ${index + 1} de ${routine.exercises.length}</div>
+              <h4 style="font-size: 1.02rem; font-weight: 700; margin-top: 2px;">${Sanitizer.escapeHTML(exercise.name)}</h4>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">${Sanitizer.escapeHTML(exercise.targetMuscle)} • ${Sanitizer.escapeHTML(exercise.equipment)}</div>
+            </div>
+            <span class="glut4-pill" style="flex-shrink: 0;">GLUT4: ${exercise.glut4Score}/5</span>
           </div>
 
           <div style="display: flex; gap: 8px; font-size: 0.8rem; background-color: var(--bg-surface); padding: 8px 12px; border-radius: var(--radius-sm); margin-top: 4px;">
@@ -417,6 +427,13 @@ class GlucoFitApp {
     this.activeExerciseTitle.textContent = exercise.name;
     this.activeExerciseSubtitle.textContent = `${exercise.targetMuscle} • ${exercise.equipment}`;
     this.activeExerciseGlut4.textContent = `GLUT4: ${exercise.glut4Score}/5`;
+
+    // Visor Biomecánico Dual + Anatomía
+    this.startBiomechAnimation(exercise);
+    if (this.activeMuscleImg) {
+      this.activeMuscleImg.src = Sanitizer.sanitizeURL(exercise.muscleImage);
+      this.activeMuscleLabel.textContent = exercise.targetMuscle.split('/')[0].trim();
+    }
 
     // Checklist de Técnica
     let checklistHtml = '';
@@ -580,6 +597,17 @@ class GlucoFitApp {
             <span class="exercise-tag">${Sanitizer.escapeHTML(ex.category)}</span>
           </div>
 
+          <div class="biomech-viewer">
+            <div class="biomech-stage" data-ex-id="${ex.id}" data-start="${Sanitizer.sanitizeURL(ex.startImage)}" data-peak="${Sanitizer.sanitizeURL(ex.peakImage)}" data-is-peak="false">
+              <img src="${Sanitizer.sanitizeURL(ex.startImage)}" alt="${Sanitizer.escapeHTML(ex.name)}" loading="lazy">
+              <div class="phase-pill">● Fase: Inicio (Toca para ver fin)</div>
+            </div>
+            <div class="muscle-badge-card">
+              <img src="${Sanitizer.sanitizeURL(ex.muscleImage)}" alt="${Sanitizer.escapeHTML(ex.targetMuscle)}" loading="lazy">
+              <div class="muscle-badge-label">${Sanitizer.escapeHTML(ex.targetMuscle.split('/')[0].trim())}</div>
+            </div>
+          </div>
+
           <div style="font-size: 0.85rem; color: var(--text-muted); margin: 10px 0;">
             <strong>Ajuste de máquina:</strong> ${Sanitizer.escapeHTML(ex.setup)}
           </div>
@@ -606,6 +634,67 @@ class GlucoFitApp {
     });
 
     Sanitizer.safeSetInnerHTML(this.catalogListWrap, html);
+
+    // Interactividad al tocar cualquier tarjeta del catálogo para alternar Inicio / Contracción
+    this.catalogListWrap.querySelectorAll('.biomech-stage[data-ex-id]').forEach(stage => {
+      stage.addEventListener('click', () => {
+        const img = stage.querySelector('img');
+        const pill = stage.querySelector('.phase-pill');
+        const startUrl = stage.getAttribute('data-start');
+        const peakUrl = stage.getAttribute('data-peak');
+        const isPeak = stage.getAttribute('data-is-peak') === 'true';
+
+        if (isPeak) {
+          img.src = Sanitizer.sanitizeURL(startUrl);
+          pill.textContent = '● Fase: Inicio (Toca para ver fin)';
+          pill.classList.remove('peak');
+          stage.setAttribute('data-is-peak', 'false');
+        } else {
+          img.src = Sanitizer.sanitizeURL(peakUrl);
+          pill.textContent = '● Fase: Contracción Máxima';
+          pill.classList.add('peak');
+          stage.setAttribute('data-is-peak', 'true');
+        }
+      });
+    });
+  }
+
+  startBiomechAnimation(exercise) {
+    this.stopBiomechAnimation();
+    if (!this.activeExerciseImg || !this.activePhasePill) return;
+
+    this.biomechIsPeak = false;
+    this.activeExerciseImg.src = Sanitizer.sanitizeURL(exercise.startImage);
+    this.activePhasePill.textContent = '● Fase: Inicio';
+    this.activePhasePill.classList.remove('peak');
+
+    const togglePhase = () => {
+      this.biomechIsPeak = !this.biomechIsPeak;
+      if (this.biomechIsPeak) {
+        this.activeExerciseImg.src = Sanitizer.sanitizeURL(exercise.peakImage);
+        this.activePhasePill.textContent = '● Fase: Contracción';
+        this.activePhasePill.classList.add('peak');
+      } else {
+        this.activeExerciseImg.src = Sanitizer.sanitizeURL(exercise.startImage);
+        this.activePhasePill.textContent = '● Fase: Inicio';
+        this.activePhasePill.classList.remove('peak');
+      }
+    };
+
+    if (exercise.startImage !== exercise.peakImage) {
+      this.biomechTimer = setInterval(togglePhase, 1500);
+    }
+
+    if (this.activeStageBox) {
+      this.activeStageBox.onclick = togglePhase;
+    }
+  }
+
+  stopBiomechAnimation() {
+    if (this.biomechTimer) {
+      clearInterval(this.biomechTimer);
+      this.biomechTimer = null;
+    }
   }
 
   // ================= PWA SERVICE WORKER =================

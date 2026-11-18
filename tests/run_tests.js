@@ -211,6 +211,24 @@ for (const ex of EXERCISES) {
 }
 assert(allExercisesValid, 'Cada ejercicio contiene ID, Músculo, Checklist de postura, Errores y Tip respiratorio');
 
+// Verificación física en disco de las imágenes WebP de alta calidad (RepDB)
+let allImagesExist = true;
+for (const ex of EXERCISES) {
+  if (!ex.startImage || !ex.peakImage || !ex.muscleImage) {
+    allImagesExist = false;
+    console.error(`Falta ruta de imagen en ${ex.id}`);
+  } else {
+    const p1 = path.join(rootDir, ex.startImage);
+    const p2 = path.join(rootDir, ex.peakImage);
+    const p3 = path.join(rootDir, ex.muscleImage);
+    if (!fs.existsSync(p1) || !fs.existsSync(p2) || !fs.existsSync(p3)) {
+      allImagesExist = false;
+      console.error(`Archivo físico faltante para ${ex.id}`);
+    }
+  }
+}
+assert(allImagesExist, 'Todas las imágenes WebP de ejercicios (start, peak y músculo) existen físicamente en disco');
+
 // Búsqueda y filtros
 const legExercises = getExercisesByCategory('piernas');
 assert(legExercises.length >= 4, `Filtro por categoría "piernas" retorna ${legExercises.length} ejercicios`);
