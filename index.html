@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GlucoFit — Coach de Fuerza & Diabetes Tipo 2</title>
+  <meta name="description" content="Entrenamiento de fuerza y guía biomecánica adaptada para reducir glucemia y activar GLUT4.">
+  <meta name="theme-color" content="#090d16">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Header Superior -->
+    <header class="header-bar no-print">
+      <div class="brand-badge">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <div class="brand-title">GlucoFit</div>
+          <div class="brand-subtitle">Coach Metabólico • GLUT4</div>
+        </div>
+      </div>
+      <div id="wakeLockStatus" class="glut4-pill" title="Screen Wake Lock (Pantalla Activa)">
+        <span class="status-dot">●</span> <span id="wakeLockText">Pantalla</span>
+      </div>
+    </header>
+
+    <!-- Vista 1: DASHBOARD -->
+    <section id="view-dashboard" class="view-section active">
+      <div class="card">
+        <div class="card-title">👋 Bienvenido al Gimnasio</div>
+        <p class="card-desc">Cada contracción muscular ayuda a tus células a absorber glucosa de forma independiente a la insulina.</p>
+        <button id="btnStartTodayRoutine" class="btn btn-primary">
+          <span>🚀 Iniciar Entrenamiento de Hoy</span>
+        </button>
+      </div>
+
+      <!-- Resumen de Última Glucemia -->
+      <div class="card">
+        <div class="card-title">🩸 Último Registro de Glucemia</div>
+        <div id="dashboardLastGlucoseBox" class="text-muted" style="padding: 10px 0;">
+          Aún no tienes registros hoy. Haz el check-in antes de tu primera serie.
+        </div>
+      </div>
+
+      <!-- Selección de Rutina -->
+      <div class="card">
+        <div class="card-title">📅 Tu Plan Semanal Full Body</div>
+        <p class="card-desc">3 días alternados para óptima translocación de GLUT4 y descanso articular.</p>
+        <div id="routineSelectorCards">
+          <!-- Inyectado dinámicamente -->
+        </div>
+      </div>
+
+      <!-- Historial de Sesiones -->
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <div class="card-title" style="margin-bottom: 0;">📜 Historial Reciente</div>
+          <button id="btnExportData" class="btn btn-secondary" style="width: auto; min-height: 38px; padding: 6px 14px; font-size: 0.8rem;">
+            Exportar JSON
+          </button>
+        </div>
+        <div id="sessionsHistoryList" class="text-muted">
+          No hay sesiones previas registradas en este dispositivo.
+        </div>
+      </div>
+    </section>
+
+    <!-- Vista 2: CHECK-IN GLUCÉMICO (Pre-Entreno) -->
+    <section id="view-checkin" class="view-section">
+      <div class="card">
+        <div class="card-title">🩸 Semáforo Glucémico Pre-Entreno</div>
+        <p class="card-desc">Ingresa el valor de tu glucómetro o sensor continuo antes de tocar las máquinas.</p>
+
+        <div class="form-group">
+          <label for="inputPreGlucose" class="form-label">Glucemia Actual (mg/dL)</label>
+          <input type="number" id="inputPreGlucose" class="form-input" placeholder="Ej: 135" min="20" max="600" step="1">
+        </div>
+
+        <button id="btnEvaluatePreGlucose" class="btn btn-primary" style="margin-bottom: 16px;">
+          Verificar Seguridad de Esfuerzo
+        </button>
+
+        <div id="preGlucoseResultCard" class="glucose-display-card hidden">
+          <div id="preGlucoseBadge" class="glucose-badge">Zona</div>
+          <div id="preGlucoseNumber" class="glucose-number">--</div>
+          <div class="glucose-unit">mg / dL</div>
+          <h3 id="preGlucoseTitle" style="margin: 14px 0 6px; font-size: 1.05rem;"></h3>
+          <p id="preGlucoseMessage" style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.4;"></p>
+          <div id="preGlucoseActionWrap" style="margin-top: 18px;">
+            <button id="btnConfirmCheckin" class="btn btn-primary hidden">
+              Entendido, Pasar a la Rutina ➔
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vista 3: RUTINA DETALLADA -->
+    <section id="view-routine" class="view-section">
+      <div class="card" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span id="routineBadgeDay" class="glut4-pill">Lunes</span>
+          <span id="routineDuration" class="text-muted" style="font-size: 0.8rem;">45 min</span>
+        </div>
+        <h2 id="routineTitleHeader" style="font-size: 1.3rem; margin: 8px 0 4px; font-weight: 800;">Día A</h2>
+        <p id="routineDescHeader" class="card-desc" style="margin-bottom: 16px;"></p>
+        <button id="btnStartActiveSession" class="btn btn-primary">
+          ▶ Iniciar Rutina en Vivo (Coach de Sala)
+        </button>
+      </div>
+
+      <h3 style="font-size: 1rem; color: var(--text-muted); margin: 20px 4px 10px; text-transform: uppercase; letter-spacing: 0.5px;">
+        Ejercicios de la Sesión
+      </h3>
+      <div id="routineExercisesList">
+        <!-- Inyectado dinámicamente -->
+      </div>
+    </section>
+
+    <!-- Vista 4: MODO SESIÓN ACTIVA (EN SALA DE PESAS) -->
+    <section id="view-active-session" class="view-section">
+      <div class="active-session-header">
+        <div>
+          <div id="activeSessionRoutineName" style="font-size: 0.75rem; color: var(--emerald-400); font-weight: 700; text-transform: uppercase;">DÍA A</div>
+          <div id="activeExerciseProgress" style="font-size: 0.9rem; font-weight: 800;">Ejercicio 1 de 5</div>
+        </div>
+        <button id="btnAbandonSession" class="btn btn-secondary" style="width: auto; min-height: 36px; padding: 4px 12px; font-size: 0.75rem;">
+          Abandonar
+        </button>
+      </div>
+
+      <!-- Ficha del Ejercicio Activo -->
+      <div class="card" style="padding-top: 16px;">
+        <div class="exercise-header">
+          <div>
+            <h2 id="activeExerciseTitle" style="font-size: 1.35rem; font-weight: 800; line-height: 1.2;">Prensa de Piernas a 45°</h2>
+            <div id="activeExerciseSubtitle" style="font-size: 0.8rem; color: var(--cyan-400); font-weight: 600; margin-top: 2px;">Cuádriceps • Máquina guiada</div>
+          </div>
+          <span id="activeExerciseGlut4" class="glut4-pill">GLUT4: 5/5</span>
+        </div>
+
+        <!-- Instrucciones y Checklist de Postura -->
+        <div class="technique-box" style="margin-top: 14px;">
+          <div class="technique-title">🎯 Biomecánica & Postura Correcta</div>
+          <div id="activeExerciseChecklist">
+            <!-- Puntos de postura -->
+          </div>
+        </div>
+
+        <!-- 3 Errores a Evitar -->
+        <div class="mistake-box">
+          <div class="mistake-title">⚠️ Errores Críticos a Evitar</div>
+          <div id="activeExerciseMistakes">
+            <!-- Errores comunes -->
+          </div>
+        </div>
+
+        <!-- Pauta de Respiración Anti-Valsalva -->
+        <div style="background-color: rgba(34, 211, 238, 0.08); border-left: 3px solid var(--cyan-400); padding: 10px 14px; border-radius: var(--radius-sm); margin-bottom: 16px; font-size: 0.825rem;">
+          <strong>Respiración:</strong> <span id="activeExerciseBreathing">Inhala al bajar, exhala con fuerza al empujar. No aguantes el aire.</span>
+        </div>
+
+        <!-- Registro de la Serie Actual -->
+        <div style="background-color: var(--bg-surface); border-radius: var(--radius-md); padding: 16px; margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <span id="activeCurrentSetNumber" style="font-size: 1.1rem; font-weight: 800; color: var(--emerald-400);">Serie 1 de 3</span>
+            <span id="activeTargetRepsHint" style="font-size: 0.8rem; color: var(--text-muted);">Objetivo: 10 - 12 repes</span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+            <div>
+              <label class="form-label" style="font-size: 0.75rem;">Peso Levantado (kg)</label>
+              <input type="number" id="inputSetWeight" class="form-input" style="font-size: 1.5rem; text-align: center;" value="40" step="2.5" min="0">
+            </div>
+            <div>
+              <label class="form-label" style="font-size: 0.75rem;">Repes Logradas</label>
+              <input type="number" id="inputSetReps" class="form-input" style="font-size: 1.5rem; text-align: center;" value="12" step="1" min="1">
+            </div>
+          </div>
+
+          <button id="btnLogSet" class="btn btn-primary">
+            ✓ Completar Serie & Iniciar Descanso
+          </button>
+        </div>
+
+        <!-- Historial de Series de este Ejercicio -->
+        <div>
+          <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; margin-bottom: 8px;">
+            Series Completadas en esta Máquina
+          </div>
+          <div id="activeCompletedSetsList">
+            <div class="text-muted" style="font-size: 0.85rem; padding: 4px 0;">Ninguna serie completada todavía.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal: TEMPORIZADOR DE DESCANSO INTERACTIVO -->
+    <div id="restTimerModal" class="rest-timer-modal hidden">
+      <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">
+        Descanso entre Series
+      </div>
+      <div class="rest-timer-circle">
+        <div id="timerDigits" class="timer-digits">75</div>
+        <div class="timer-label">Segundos</div>
+      </div>
+      <p style="font-size: 0.9rem; color: var(--text-muted); max-width: 300px; margin-bottom: 24px;">
+        Relaja la postura, respira hondo y bebe un sorbo de agua para mantener la hidratación celular.
+      </p>
+      <div style="display: flex; gap: 12px; width: 100%; max-width: 320px;">
+        <button id="btnAdd15Sec" class="btn btn-secondary" style="flex: 1; min-height: 44px; padding: 8px;">+15 seg</button>
+        <button id="btnSkipRestTimer" class="btn btn-primary" style="flex: 2; min-height: 44px; padding: 8px;">Listo / Saltar ❯</button>
+      </div>
+    </div>
+
+    <!-- Vista 5: CHECK-OUT GLUCÉMICO POST-ENTRENO -->
+    <section id="view-checkout" class="view-section">
+      <div class="card">
+        <div class="card-title">🎉 ¡Sesión de Fuerza Completada!</div>
+        <p class="card-desc">Has completado tu estímulo de sobrecarga para potenciar tu salud metabólica.</p>
+
+        <div style="background-color: var(--bg-surface); border-radius: var(--radius-md); padding: 14px; margin-bottom: 18px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span class="text-muted">Tiempo Total:</span>
+            <strong id="summaryDuration">42 min</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span class="text-muted">Series Completadas:</span>
+            <strong id="summaryTotalSets">15 series</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+            <span class="text-muted">Volumen Total Movido:</span>
+            <strong id="summaryTotalVolume" class="text-emerald">4.250 kg</strong>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputPostGlucose" class="form-label">Glucemia Post-Entreno (mg/dL)</label>
+          <input type="number" id="inputPostGlucose" class="form-input" placeholder="Mide con tu glucómetro" min="20" max="600" step="1">
+        </div>
+
+        <button id="btnCalculateDelta" class="btn btn-primary" style="margin-bottom: 16px;">
+          Calcular Impacto Glucémico (Efecto GLUT4)
+        </button>
+
+        <div id="checkoutResultCard" class="glucose-display-card hidden">
+          <div id="checkoutBadge" class="glucose-badge">Resultado</div>
+          <h3 id="checkoutTitle" style="font-size: 1.2rem; margin-bottom: 8px;"></h3>
+          <p id="checkoutSummary" style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 16px;"></p>
+          <button id="btnSaveAndCloseSession" class="btn btn-primary">
+            Guardar en Mi Historial y Cerrar
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vista 6: DICCIONARIO / CATÁLOGO DE EJERCICIOS -->
+    <section id="view-catalog" class="view-section">
+      <div class="card" style="margin-bottom: 14px;">
+        <div class="card-title">📖 Guía Biomecánica de Ejercicios</div>
+        <p class="card-desc">Consulta la técnica correcta, postura y músculos de cada máquina antes de entrenar.</p>
+
+        <div class="search-bar-wrap">
+          <input type="text" id="inputSearchExercises" class="form-input" placeholder="🔍 Buscar por nombre o músculo..." style="font-size: 1rem; min-height: 46px;">
+        </div>
+
+        <div class="category-chips">
+          <button class="chip active" data-category="todos">Todos</button>
+          <button class="chip" data-category="piernas">Piernas</button>
+          <button class="chip" data-category="espalda">Espalda</button>
+          <button class="chip" data-category="pecho">Pecho</button>
+          <button class="chip" data-category="hombros">Hombros</button>
+          <button class="chip" data-category="brazos">Brazos</button>
+          <button class="chip" data-category="core">Core</button>
+        </div>
+      </div>
+
+      <div id="catalogListWrap">
+        <!-- Inyectado dinámicamente -->
+      </div>
+    </section>
+
+    <!-- Barra de Navegación Inferior -->
+    <nav class="bottom-nav no-print">
+      <a href="#dashboard" class="nav-item active" data-view="dashboard">
+        <span class="nav-icon">📊</span>
+        <span>Inicio</span>
+      </a>
+      <a href="#checkin" class="nav-item" data-view="checkin">
+        <span class="nav-icon">🩸</span>
+        <span>Check-In</span>
+      </a>
+      <a href="#routine" class="nav-item" data-view="routine">
+        <span class="nav-icon">🏋️</span>
+        <span>Rutina</span>
+      </a>
+      <a href="#catalog" class="nav-item" data-view="catalog">
+        <span class="nav-icon">📖</span>
+        <span>Técnica</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- Script Principal Modular -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>

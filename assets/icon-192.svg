@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="192" height="192">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="110" fill="url(#bgGrad)"/>
+  <circle cx="256" cy="256" r="190" stroke="url(#accentGrad)" stroke-width="12" fill="none" opacity="0.4"/>
+  <path d="M 140 210 L 170 210 L 170 302 L 140 302 Z" fill="#34d399"/>
+  <path d="M 115 225 L 135 225 L 135 287 L 115 287 Z" fill="#10b981"/>
+  <path d="M 342 210 L 372 210 L 372 302 L 342 302 Z" fill="#34d399"/>
+  <path d="M 377 225 L 397 225 L 397 287 L 377 287 Z" fill="#10b981"/>
+  <rect x="170" y="244" width="172" height="24" rx="6" fill="#f8fafc"/>
+  <path d="M 256 140 C 230 180, 210 215, 210 245 C 210 270, 230 292, 256 292 C 282 292, 302 270, 302 245 C 302 215, 282 180, 256 140 Z" fill="url(#accentGrad)" opacity="0.9"/>
+  <polygon points="258,185 242,230 256,230 252,268 272,222 258,222" fill="#090d16"/>
+</svg>

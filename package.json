@@ -1,0 +1,23 @@
+{
+  "name": "glucofit",
+  "version": "1.0.00",
+  "description": "Coach inteligente de técnica y fuerza en gimnasio para Diabetes Tipo 2",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/run_tests.js",
+    "test:security": "node ../AiAppFactory/tools/security-guardian/index.mjs .",
+    "security:full": "node ../AiAppFactory/tools/security-guardian/index.mjs .",
+    "version:bump": "node scripts/bump-version.js"
+  },
+  "keywords": [
+    "fitness",
+    "diabetes",
+    "gym",
+    "coach",
+    "glut4",
+    "pwa",
+    "offline-first"
+  ],
+  "author": "Leon Lezcano",
+  "license": "MIT"
+}
