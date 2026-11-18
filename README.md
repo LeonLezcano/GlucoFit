@@ -1,12 +1,12 @@
-# ⚡ GlucoFit — Coach de Fuerza & Guía Biomecánica para Diabetes Tipo 2
+# GlucoFit — Prescripción de Fuerza & Control Glucémico para Diabetes Tipo 2
 
-> **Versión:** `v1.0.01`  
+> **Versión:** `v1.0.02`  
 > **Arquetipo:** Medical-Sports Progressive Web App (PWA) Mobile-First  
-> **Estándar:** AiAppFactory Invariants, Zero-Sink DOM Security, 5-Layer Testing Harness (76 Tests PASS)
+> **Estándar:** AiAppFactory Invariants, Anti-Slop Crafted UI, Zero-Sink DOM Security, 5-Layer Testing Harness (76 Tests PASS)
 
 ---
 
-## 🎯 Propósito y Visión Fisiológica
+## Propósito y Visión Fisiológica
 
 **GlucoFit** es una aplicación Web Progresiva concebida para personas con **Diabetes Tipo 2** que inician entrenamiento de sobrecarga en un gimnasio comercial para mejorar su calidad de vida y descender sus niveles de glucosa en sangre.
 
@@ -17,9 +17,9 @@ GlucoFit estructura una rutina **Full Body de 3 días por semana (Lunes, Miérco
 
 ---
 
-## 🛡️ Pilares Tecnológicos & Clínicos
+## Pilares Tecnológicos, Clínicos & UX Anti-Slop
 
-### 1. 🩸 Centinela y Semáforo Glucémico Preventivo (Pautas ADA/EASD)
+### 1. Centinela y Semáforo Glucémico Preventivo (Pautas ADA/EASD)
 - **Zona Hipoglucemia (< 70 mg/dL):** Bloqueo estricto del entrenamiento. Se instruye la aplicación de la *Regla de los 15* (15g de carbohidratos simples, 15 min de reposo y re-medición).
 - **Zona Precaución (70 – 99 mg/dL):** Sugerencia de colación rápida (15-20g carbohidratos, ej. fruta o galletas) antes de comenzar series pesadas.
 - **Zona Óptima Verde (100 – 180 mg/dL):** Rango ideal para estimulación de GLUT4 y gasto de glucógeno sin estrés metabólico.

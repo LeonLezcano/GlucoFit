@@ -1422,6 +1422,12 @@
       : `${total.toLocaleString()} of ${all.toLocaleString()} exercises`;
   }
 
+  const Sanitizer = {
+    escapeHTML(str) {
+      return String(str ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+    }
+  };
+
   function updateActiveBadges() {
     activeFilEl.innerHTML = '';
     const { category, equipment, target } = state.filters;
@@ -1432,7 +1438,14 @@
         hasAny = true;
         const badge = document.createElement('span');
         badge.className = 'active-badge';
-        badge.innerHTML = `${val}<button class="active-badge-remove" data-filter="${key}" data-value="${val}" aria-label="Remove ${val}">×</button>`;
+        badge.textContent = val;
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'active-badge-remove';
+        removeBtn.setAttribute('data-filter', key);
+        removeBtn.setAttribute('data-value', val);
+        removeBtn.setAttribute('aria-label', 'Remove ' + val);
+        removeBtn.textContent = '×';
+        badge.appendChild(removeBtn);
         activeFilEl.appendChild(badge);
       });
     };
@@ -1482,7 +1495,14 @@
     metaItems.forEach(({ label, value }) => {
       const chip = document.createElement('div');
       chip.className = 'meta-chip';
-      chip.innerHTML = `<span class="meta-chip-label">${label}</span><span class="meta-chip-value">${value}</span>`;
+      const lbl = document.createElement('span');
+      lbl.className = 'meta-chip-label';
+      lbl.textContent = label;
+      const val = document.createElement('span');
+      val.className = 'meta-chip-value';
+      val.textContent = value;
+      chip.appendChild(lbl);
+      chip.appendChild(val);
       modalMeta.appendChild(chip);
     });
 
@@ -1544,7 +1564,14 @@
         steps.forEach((step, i) => {
           const li = document.createElement('li');
           li.className = 'instruction-step';
-          li.innerHTML = `<span class="step-num">${i + 1}</span><span class="step-text">${step}</span>`;
+          const num = document.createElement('span');
+          num.className = 'step-num';
+          num.textContent = String(i + 1);
+          const txt = document.createElement('span');
+          txt.className = 'step-text';
+          txt.textContent = step;
+          li.appendChild(num);
+          li.appendChild(txt);
           list.appendChild(li);
         });
       }

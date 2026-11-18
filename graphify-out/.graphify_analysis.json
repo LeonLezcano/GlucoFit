@@ -1,0 +1,481 @@
+{
+  "communities": {
+    "0": [
+      "tests_run_tests",
+      "tests_run_tests_activesession",
+      "tests_run_tests_allsessions",
+      "tests_run_tests_assert",
+      "tests_run_tests_cachecontrol",
+      "tests_run_tests_chaoticinputs",
+      "tests_run_tests_checkineval",
+      "tests_run_tests_coach",
+      "tests_run_tests_cspheader",
+      "tests_run_tests_deltaeval",
+      "tests_run_tests_dirname",
+      "tests_run_tests_escaped",
+      "tests_run_tests_evalelevated",
+      "tests_run_tests_evalhighrisk",
+      "tests_run_tests_evalhypo",
+      "tests_run_tests_evaloptimal1",
+      "tests_run_tests_evaloptimal2",
+      "tests_run_tests_evaloptimal3",
+      "tests_run_tests_evalprecaution",
+      "tests_run_tests_filename",
+      "tests_run_tests_finalrecord",
+      "tests_run_tests_finalsummary",
+      "tests_run_tests_firebaseconfig",
+      "tests_run_tests_firebaseconfigpath",
+      "tests_run_tests_firebaseraw",
+      "tests_run_tests_globalheadersrule",
+      "tests_run_tests_lastperf",
+      "tests_run_tests_legexercises",
+      "tests_run_tests_mocksession",
+      "tests_run_tests_postdescenso",
+      "tests_run_tests_postestable",
+      "tests_run_tests_postsubida",
+      "tests_run_tests_rootdir",
+      "tests_run_tests_routinea",
+      "tests_run_tests_routineb",
+      "tests_run_tests_routinec",
+      "tests_run_tests_routineselected",
+      "tests_run_tests_savedrecord",
+      "tests_run_tests_searchbymuscle",
+      "tests_run_tests_searchresult",
+      "tests_run_tests_secretpatterns",
+      "tests_run_tests_set1result",
+      "tests_run_tests_set3result",
+      "tests_run_tests_settings",
+      "tests_run_tests_srcfiles",
+      "tests_run_tests_storedsession",
+      "tests_run_tests_swheaderrule",
+      "tests_run_tests_testcoach",
+      "tests_run_tests_totalvolume",
+      "tests_run_tests_xframeoptions"
+    ],
+    "1": [
+      "app",
+      "app_glucofitapp",
+      "app_glucofitapp_bindevents",
+      "app_glucofitapp_constructor",
+      "app_glucofitapp_handlecheckoutdelta",
+      "app_glucofitapp_handlelogset",
+      "app_glucofitapp_handlepreglucoseevaluation",
+      "app_glucofitapp_handleroute",
+      "app_glucofitapp_initelements",
+      "app_glucofitapp_loadcurrentactiveexercise",
+      "app_glucofitapp_openresttimer",
+      "app_glucofitapp_preparecheckoutview",
+      "app_glucofitapp_registerserviceworker",
+      "app_glucofitapp_rendercatalog",
+      "app_glucofitapp_rendercompletedsetslist",
+      "app_glucofitapp_renderdashboard",
+      "app_glucofitapp_renderroutineview",
+      "app_glucofitapp_startactiveworkout",
+      "app_glucofitapp_startbiomechanimation",
+      "app_glucofitapp_stopbiomechanimation",
+      "app_glucofitapp_updatewakelockui",
+      "src_data_exercises",
+      "src_data_exercises_exercises",
+      "src_data_exercises_getexercisebyid",
+      "src_data_exercises_getexercisesbycategory",
+      "src_data_exercises_searchexercises",
+      "src_data_routines",
+      "src_data_routines_getroutinebyid",
+      "src_data_routines_routines",
+      "src_services_metabolic_guard",
+      "src_services_metabolic_guard_glucose_zones",
+      "src_services_metabolic_guard_metabolicguard",
+      "src_services_storage",
+      "src_services_storage_memorystorage",
+      "src_services_storage_storageservice",
+      "src_utils_sanitizer",
+      "src_utils_sanitizer_sanitizer"
+    ],
+    "2": [
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_en_ref",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_en_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_es_ref",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_es_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_fr_ref",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_fr_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_hi_ref",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_hi_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_it_ref",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_it_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_ko_ref",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_ko_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_languagemap_properties",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_languagestepsmap_properties",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_pl_ref",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_pl_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_en",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_es",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_fr",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_hi",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_it",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_ko",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_pl",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_ru",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_tr",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_zh",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_ru_ref",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_ru_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_tr_ref",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_tr_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_zh_ref",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_zh_type"
+    ],
+    "3": [
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_additionalproperties_ref",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_defs",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_defs_exercise",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_defs_languagestepsmap",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_defs_steps",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_description",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_exercise_additionalproperties",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_exercise_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_id",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_items",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_items_minlength",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_items_ref",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_items_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_languagestepsmap_additionalproperties",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_languagestepsmap_description",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_languagestepsmap_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_secondary_muscles",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_schema",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_secondary_muscles_description",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_secondary_muscles_items",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_secondary_muscles_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_steps_items",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_steps_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_title",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_type"
+    ],
+    "4": [
+      "package",
+      "package_author",
+      "package_description",
+      "package_keywords",
+      "package_license",
+      "package_name",
+      "package_scripts",
+      "package_scripts_dev",
+      "package_scripts_security_full",
+      "package_scripts_serve",
+      "package_scripts_test",
+      "package_scripts_test_security",
+      "package_scripts_version_bump",
+      "package_type",
+      "package_version",
+      "ref_coach",
+      "ref_diabetes",
+      "ref_fitness",
+      "ref_glut4",
+      "ref_gym",
+      "ref_offline_first",
+      "ref_pwa"
+    ],
+    "5": [
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_additionalproperties_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_defs_languagemap",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_languagemap_additionalproperties",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_languagemap_description",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_languagemap_required",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_languagemap_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_languagestepsmap_required",
+      "ref_en",
+      "ref_es",
+      "ref_fr",
+      "ref_hi",
+      "ref_it",
+      "ref_ko",
+      "ref_pl",
+      "ref_ru",
+      "ref_tr",
+      "ref_zh"
+    ],
+    "6": [
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_exercise_required",
+      "ref_attribution",
+      "ref_body_part",
+      "ref_category",
+      "ref_created_at",
+      "ref_equipment",
+      "ref_gif_url",
+      "ref_id",
+      "ref_image",
+      "ref_instruction_steps",
+      "ref_instructions",
+      "ref_media_id",
+      "ref_muscle_group",
+      "ref_name",
+      "ref_secondary_muscles",
+      "ref_target"
+    ],
+    "7": [
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_body_part_description",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_body_part_enum",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_body_part_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_body_part",
+      "ref_back",
+      "ref_cardio",
+      "ref_chest",
+      "ref_lower_arms",
+      "ref_lower_legs",
+      "ref_neck",
+      "ref_shoulders",
+      "ref_upper_arms",
+      "ref_upper_legs",
+      "ref_waist"
+    ],
+    "8": [
+      "src_services_session_coach",
+      "src_services_session_coach_sessioncoach",
+      "src_services_session_coach_sessioncoach_calculatetotalvolumekg",
+      "src_services_session_coach_sessioncoach_constructor",
+      "src_services_session_coach_sessioncoach_finishsession",
+      "src_services_session_coach_sessioncoach_handlevisibilitychange",
+      "src_services_session_coach_sessioncoach_playbeep",
+      "src_services_session_coach_sessioncoach_recordset",
+      "src_services_session_coach_sessioncoach_releasewakelock",
+      "src_services_session_coach_sessioncoach_requestwakelock",
+      "src_services_session_coach_sessioncoach_startresttimer",
+      "src_services_session_coach_sessioncoach_startsession",
+      "src_services_session_coach_sessioncoach_stopresttimer",
+      "src_services_session_coach_sessioncoach_triggerrestfinishedalert"
+    ],
+    "9": [
+      "scripts_bump_version",
+      "scripts_bump_version_dirname",
+      "scripts_bump_version_filename",
+      "scripts_bump_version_major",
+      "scripts_bump_version_match",
+      "scripts_bump_version_minor",
+      "scripts_bump_version_packagepath",
+      "scripts_bump_version_patchstr",
+      "scripts_bump_version_rawversion",
+      "scripts_bump_version_rootdir",
+      "scripts_bump_version_swpath",
+      "scripts_bump_version_versiondata",
+      "scripts_bump_version_versionpath"
+    ],
+    "10": [
+      "manifest",
+      "manifest_background_color",
+      "manifest_description",
+      "manifest_display",
+      "manifest_icons",
+      "manifest_name",
+      "manifest_orientation",
+      "manifest_short_name",
+      "manifest_start_url",
+      "manifest_theme_color"
+    ],
+    "11": [
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_exercise_properties",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_instruction_steps_description",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_instruction_steps_ref",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_instructions_description",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_instructions_ref",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_instruction_steps",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_instructions"
+    ],
+    "12": [
+      "scripts_serve",
+      "scripts_serve_dirname",
+      "scripts_serve_filename",
+      "scripts_serve_mime_types",
+      "scripts_serve_rootdir",
+      "scripts_serve_server"
+    ],
+    "13": [
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_attribution_description",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_attribution_minlength",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_attribution_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_attribution"
+    ],
+    "14": [
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_category_description",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_category_minlength",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_category_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_category"
+    ],
+    "15": [
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_created_at_description",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_created_at_format",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_created_at_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_created_at"
+    ],
+    "16": [
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_equipment_description",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_equipment_minlength",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_equipment_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_equipment"
+    ],
+    "17": [
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_gif_url_description",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_gif_url_pattern",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_gif_url_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_gif_url"
+    ],
+    "18": [
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_id_description",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_id_pattern",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_id_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_id"
+    ],
+    "19": [
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_image_description",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_image_pattern",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_image_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_image"
+    ],
+    "20": [
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_media_id_description",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_media_id_minlength",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_media_id_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_media_id"
+    ],
+    "21": [
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_muscle_group_description",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_muscle_group_minlength",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_muscle_group_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_muscle_group"
+    ],
+    "22": [
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_name_description",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_name_minlength",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_name_type",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_name"
+    ],
+    "23": [
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_properties_target",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_target_description",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_target_minlength",
+      "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_target_type"
+    ],
+    "24": [
+      "sw",
+      "sw_critical_assets"
+    ]
+  },
+  "cohesion": {
+    "0": 0.04,
+    "1": 0.13513513513513514,
+    "2": 0.08064516129032258,
+    "3": 0.08,
+    "4": 0.09090909090909091,
+    "5": 0.18382352941176472,
+    "6": 0.125,
+    "7": 0.14285714285714285,
+    "8": 0.25274725274725274,
+    "9": 0.15384615384615385,
+    "10": 0.2,
+    "11": 0.2857142857142857,
+    "12": 0.3333333333333333,
+    "13": 0.5,
+    "14": 0.5,
+    "15": 0.5,
+    "16": 0.5,
+    "17": 0.5,
+    "18": 0.5,
+    "19": 0.5,
+    "20": 0.5,
+    "21": 0.5,
+    "22": 0.5,
+    "23": 0.5,
+    "24": 1.0
+  },
+  "gods": [
+    {
+      "id": "app_glucofitapp",
+      "label": "GlucoFitApp",
+      "degree": 20
+    },
+    {
+      "id": "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_exercise_required",
+      "label": "required",
+      "degree": 16
+    },
+    {
+      "id": "src_services_session_coach_sessioncoach",
+      "label": "SessionCoach",
+      "degree": 15
+    },
+    {
+      "id": "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_languagemap_required",
+      "label": "required",
+      "degree": 11
+    },
+    {
+      "id": "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_languagestepsmap_required",
+      "label": "required",
+      "degree": 11
+    },
+    {
+      "id": "extra_datasets_hasaneyldrm_exercises_dataset_data_exercises_schema_body_part_enum",
+      "label": "enum",
+      "degree": 11
+    },
+    {
+      "id": "src_utils_sanitizer_sanitizer",
+      "label": "Sanitizer",
+      "degree": 9
+    },
+    {
+      "id": "package_keywords",
+      "label": "keywords",
+      "degree": 8
+    },
+    {
+      "id": "package_scripts",
+      "label": "scripts",
+      "degree": 7
+    },
+    {
+      "id": "src_services_storage_storageservice",
+      "label": "StorageService",
+      "degree": 7
+    }
+  ],
+  "surprises": [],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `properties` connect `properties` to `exercises.schema.json`, `enum`, `attribution`, `category`, `created_at`, `equipment`, `gif_url`, `id`, `image`, `media_id`, `muscle_group`, `name`, `target`?",
+      "why": "High betweenness centrality (0.168) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `exercise` connect `exercises.schema.json` to `properties`, `required`?",
+      "why": "High betweenness centrality (0.146) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `$defs` connect `exercises.schema.json` to `required`?",
+      "why": "High betweenness centrality (0.136) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `$schema`, `$id`, `title` to the rest of the system?",
+      "why": "196 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `run_tests.js` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.04 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `GlucoFitApp` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.13513513513513514 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `properties` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.08064516129032258 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

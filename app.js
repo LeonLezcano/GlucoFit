@@ -85,6 +85,10 @@ class GlucoFitApp {
     this.activeTargetRepsHint = document.getElementById('activeTargetRepsHint');
     this.inputSetWeight = document.getElementById('inputSetWeight');
     this.inputSetReps = document.getElementById('inputSetReps');
+    this.btnWeightMinus = document.getElementById('btnWeightMinus');
+    this.btnWeightPlus = document.getElementById('btnWeightPlus');
+    this.btnRepsMinus = document.getElementById('btnRepsMinus');
+    this.btnRepsPlus = document.getElementById('btnRepsPlus');
     this.btnLogSet = document.getElementById('btnLogSet');
     this.activeCompletedSetsList = document.getElementById('activeCompletedSetsList');
     this.btnAbandonSession = document.getElementById('btnAbandonSession');
@@ -144,6 +148,31 @@ class GlucoFitApp {
     }
 
     // Sesión Activa
+    if (this.btnWeightMinus) {
+      this.btnWeightMinus.addEventListener('click', () => {
+        const cur = Math.max(0, (parseFloat(this.inputSetWeight.value) || 0) - 2.5);
+        this.inputSetWeight.value = cur;
+      });
+    }
+    if (this.btnWeightPlus) {
+      this.btnWeightPlus.addEventListener('click', () => {
+        const cur = (parseFloat(this.inputSetWeight.value) || 0) + 2.5;
+        this.inputSetWeight.value = cur;
+      });
+    }
+    if (this.btnRepsMinus) {
+      this.btnRepsMinus.addEventListener('click', () => {
+        const cur = Math.max(1, (parseInt(this.inputSetReps.value, 10) || 1) - 1);
+        this.inputSetReps.value = cur;
+      });
+    }
+    if (this.btnRepsPlus) {
+      this.btnRepsPlus.addEventListener('click', () => {
+        const cur = (parseInt(this.inputSetReps.value, 10) || 0) + 1;
+        this.inputSetReps.value = cur;
+      });
+    }
+
     if (this.btnLogSet) {
       this.btnLogSet.addEventListener('click', () => this.handleLogSet());
     }
@@ -294,7 +323,7 @@ class GlucoFitApp {
 
     // Historial de Sesiones
     if (sessions.length === 0) {
-      this.sessionsHistoryList.innerHTML = '<div class="text-muted" style="padding: 10px 0; font-size: 0.85rem;">Aún no tienes sesiones registradas. ¡Comienza hoy tu primera sesión!</div>';
+      this.sessionsHistoryList.innerHTML = '<div class="text-muted" style="padding: 10px 0; font-size: 0.85rem;">Sin sesiones registradas aún en este dispositivo.</div>';
     } else {
       let listHtml = '';
       sessions.slice(0, 5).forEach(sess => {
@@ -307,8 +336,8 @@ class GlucoFitApp {
               <span style="color: var(--text-dim); font-size: 0.75rem;">${d}</span>
             </div>
             <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-top: 4px; color: var(--text-muted);">
-              <span>${sess.totalSets || 0} series • ${(sess.totalVolumeKg || 0).toLocaleString()} kg movidos</span>
-              ${delta !== null ? `<span style="font-weight: 800; color: ${delta > 0 ? 'var(--emerald-400)' : 'var(--cyan-400)'};">${delta > 0 ? `-${delta} mg/dL (GLUT4)` : `${delta} mg/dL`}</span>` : ''}
+              <span>${sess.totalSets || 0} series • ${(sess.totalVolumeKg || 0).toLocaleString()} kg levantados</span>
+              ${delta !== null ? `<span style="font-weight: 800; color: ${delta > 0 ? 'var(--emerald-400)' : 'var(--cyan-400)'};">${delta > 0 ? `-${delta} mg/dL (Efecto GLUT4)` : `${delta} mg/dL`}</span>` : ''}
             </div>
           </div>
         `;
@@ -379,9 +408,10 @@ class GlucoFitApp {
             <div style="margin-left: auto; color: var(--cyan-400); font-weight: 600;">${suggestedWeight}</div>
           </div>
 
-          <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 6px; font-style: italic;">
-            💡 ${Sanitizer.escapeHTML(item.clinicalNote)}
-          </p>
+          <div style="font-size: 0.8rem; color: var(--text-dim); margin-top: 6px; display: flex; align-items: flex-start; gap: 6px;">
+            <span style="color: var(--cyan-400); font-weight: 700; flex-shrink: 0;">Nota clínica:</span>
+            <span>${Sanitizer.escapeHTML(item.clinicalNote)}</span>
+          </div>
         </div>
       `;
     });
@@ -403,11 +433,11 @@ class GlucoFitApp {
   updateWakeLockUI(active) {
     if (this.wakeLockStatus) {
       if (active) {
-        this.wakeLockStatus.style.backgroundColor = 'rgba(16, 185, 129, 0.25)';
-        this.wakeLockText.textContent = 'Pantalla Activa ON';
+        this.wakeLockStatus.style.backgroundColor = 'rgba(16, 185, 129, 0.2)';
+        this.wakeLockText.textContent = 'Pantalla Activa';
       } else {
-        this.wakeLockStatus.style.backgroundColor = 'rgba(100, 116, 139, 0.2)';
-        this.wakeLockText.textContent = 'Pantalla Normal';
+        this.wakeLockStatus.style.backgroundColor = 'rgba(100, 116, 139, 0.15)';
+        this.wakeLockText.textContent = 'Pantalla';
       }
     }
   }
@@ -438,14 +468,14 @@ class GlucoFitApp {
     // Checklist de Técnica
     let checklistHtml = '';
     exercise.postureChecklist.forEach(item => {
-      checklistHtml += `<div class="checklist-item"><span>✓</span><span>${Sanitizer.escapeHTML(item)}</span></div>`;
+      checklistHtml += `<div class="checklist-item"><span class="icon-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>${Sanitizer.escapeHTML(item)}</span></div>`;
     });
     Sanitizer.safeSetInnerHTML(this.activeExerciseChecklist, checklistHtml);
 
     // Errores a evitar
     let mistakesHtml = '';
     exercise.commonMistakes.forEach(item => {
-      mistakesHtml += `<div class="checklist-item" style="color: var(--rose-400);"><span>✕</span><span>${Sanitizer.escapeHTML(item)}</span></div>`;
+      mistakesHtml += `<div class="mistake-item"><span class="icon-cross" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span>${Sanitizer.escapeHTML(item)}</span></div>`;
     });
     Sanitizer.safeSetInnerHTML(this.activeExerciseMistakes, mistakesHtml);
 
@@ -474,7 +504,7 @@ class GlucoFitApp {
         html += `
           <div class="set-row completed">
             <span><strong>Serie ${s.setNumber}:</strong> ${s.reps} repes × ${s.weightKg} kg</span>
-            <span class="text-emerald" style="font-weight: 700;">✓ Guardada</span>
+            <span class="text-emerald" style="font-weight: 700; font-size: 0.8rem;">Completada</span>
           </div>
         `;
       });
@@ -600,7 +630,7 @@ class GlucoFitApp {
           <div class="biomech-viewer">
             <div class="biomech-stage" data-ex-id="${ex.id}" data-start="${Sanitizer.sanitizeURL(ex.startImage)}" data-peak="${Sanitizer.sanitizeURL(ex.peakImage)}" data-is-peak="false">
               <img src="${Sanitizer.sanitizeURL(ex.startImage)}" alt="${Sanitizer.escapeHTML(ex.name)}" loading="lazy">
-              <div class="phase-pill">● Fase: Inicio (Toca para ver fin)</div>
+              <div class="phase-pill">● Fase: Inicio</div>
             </div>
             <div class="muscle-badge-card">
               <img src="${Sanitizer.sanitizeURL(ex.muscleImage)}" alt="${Sanitizer.escapeHTML(ex.targetMuscle)}" loading="lazy">
@@ -609,25 +639,31 @@ class GlucoFitApp {
           </div>
 
           <div style="font-size: 0.85rem; color: var(--text-muted); margin: 10px 0;">
-            <strong>Ajuste de máquina:</strong> ${Sanitizer.escapeHTML(ex.setup)}
+            <strong style="color: var(--text-main);">Ajuste de máquina:</strong> ${Sanitizer.escapeHTML(ex.setup)}
           </div>
 
           <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">
-            <strong>Ejecución:</strong> ${Sanitizer.escapeHTML(ex.execution)}
+            <strong style="color: var(--text-main);">Ejecución:</strong> ${Sanitizer.escapeHTML(ex.execution)}
           </div>
 
           <div class="technique-box" style="margin-bottom: 8px; padding: 10px 14px;">
-            <div class="technique-title">✓ Checklist de Postura</div>
-            ${ex.postureChecklist.map(p => `<div class="checklist-item"><span>•</span><span>${Sanitizer.escapeHTML(p)}</span></div>`).join('')}
+            <div class="technique-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Checklist de Postura
+            </div>
+            ${ex.postureChecklist.map(p => `<div class="checklist-item"><span class="icon-check" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>${Sanitizer.escapeHTML(p)}</span></div>`).join('')}
           </div>
 
           <div class="mistake-box" style="margin-bottom: 8px; padding: 10px 14px;">
-            <div class="mistake-title">⚠️ Errores Típicos</div>
-            ${ex.commonMistakes.map(m => `<div class="checklist-item" style="color: var(--rose-400);"><span>•</span><span>${Sanitizer.escapeHTML(m)}</span></div>`).join('')}
+            <div class="mistake-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              Errores Críticos
+            </div>
+            ${ex.commonMistakes.map(m => `<div class="mistake-item"><span class="icon-cross" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span>${Sanitizer.escapeHTML(m)}</span></div>`).join('')}
           </div>
 
-          <div style="font-size: 0.8rem; color: var(--cyan-400); font-style: italic;">
-            🫁 <strong>Respiración:</strong> ${Sanitizer.escapeHTML(ex.breathingTip)}
+          <div style="font-size: 0.8rem; color: var(--cyan-400); margin-top: 6px;">
+            <strong>Pauta Respiratoria:</strong> ${Sanitizer.escapeHTML(ex.breathingTip)}
           </div>
         </div>
       `;
