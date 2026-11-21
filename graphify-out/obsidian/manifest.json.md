@@ -1,0 +1,25 @@
+---
+source_file: "manifest.json"
+type: "code"
+community: "manifest.json"
+location: "L1"
+tags:
+  - graphify/code
+  - graphify/EXTRACTED
+  - community/manifestjson
+---
+
+# manifest.json
+
+## Connections
+- [[background_color]] - `contains` [EXTRACTED]
+- [[description_18]] - `contains` [EXTRACTED]
+- [[display]] - `contains` [EXTRACTED]
+- [[icons]] - `contains` [EXTRACTED]
+- [[name_2]] - `contains` [EXTRACTED]
+- [[orientation]] - `contains` [EXTRACTED]
+- [[short_name]] - `contains` [EXTRACTED]
+- [[start_url]] - `contains` [EXTRACTED]
+- [[theme_color]] - `contains` [EXTRACTED]
+
+#graphify/code #graphify/EXTRACTED #community/manifestjson

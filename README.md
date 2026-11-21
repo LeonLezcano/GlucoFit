@@ -1,8 +1,8 @@
 # GlucoFit — Prescripción de Fuerza & Control Glucémico para Diabetes Tipo 2
 
-> **Versión:** `v1.0.02`  
+> **Versión:** `v1.0.03`  
 > **Arquetipo:** Medical-Sports Progressive Web App (PWA) Mobile-First  
-> **Estándar:** AiAppFactory Invariants, Anti-Slop Crafted UI, Zero-Sink DOM Security, 5-Layer Testing Harness (76 Tests PASS)
+> **Estándar:** AiAppFactory Invariants, Anti-Slop Crafted UI, Zero-Sink DOM Security, 5-Layer Testing Harness (111 Tests PASS)
 
 ---
 
@@ -29,19 +29,33 @@ GlucoFit estructura una rutina **Full Body de 3 días por semana (Lunes, Miérco
 
 ### 2. 🏋️ Modo Sesión Activa (Coach de Sala de Pesas)
 - **Screen Wake Lock API:** Mantiene la pantalla del celular siempre encendida durante el entrenamiento en el soporte de la máquina, con auto re-enganche al regresar de otras aplicaciones.
+- **Calculadora Visual de Discos en Vivo:** Desglose gráfico interactivo por lado para barras olímpicas (20 kg, 15 kg, 10 kg, EZ y Smith) al tocar la carga de cualquier serie.
 - **Checklist Postural & 3 Errores Críticos:** Cada máquina presenta 3 puntos obligatorios de postura y los 3 errores biomecánicos más peligrosos para prevenir lesiones discales o articulares.
 - **Pauta Respiratoria Anti-Valsalva:** Instrucción precisa de respiración en cada ejercicio para prevenir picos bruscos de presión arterial o presión intraocular (crucial ante retinopatía).
-- **Sobrecarga Progresiva:** La app recuerda la última carga y repeticiones logradas en cada máquina para sugerir el peso del día.
 
-### 3. ⏱️ Temporizador de Descanso Interactivo
-- Cuenta regresiva visual (60s a 90s según la demanda metabólica del ejercicio).
-- Avisos acústicos sintetizados con **Web Audio API** nativo (sin archivos de audio externos).
-- Vibración háptica (`navigator.vibrate`) en smartphones.
+### 3. 🗺️ Mapa Muscular Vectorial SVG Reactivo
+- **Anatomía Completa:** Siluetas Hombre / Mujer y vistas Frente / Dorso basadas en rutas SVG nativas sin dependencias pesadas.
+- **Monitoreo de Volumen y Recuperación 48h:** Colorea los grupos musculares en degradados según el volumen semanal y calcula si el grupo muscular está listo para volver a ser entrenado (>48h) o en recuperación activa.
+- **Modo Post-Sesión GLUT4:** Resalta en color verde esmeralda las zonas musculares exactas activadas durante el entrenamiento que facilitaron el drenaje glucémico.
 
-### 4. 📶 100% Offline-First
-- Todo el catálogo de ejercicios, la rutina y la lógica clínica residen en el cliente (`localStorage` + Service Worker).
-- Funciona sin interrupciones en subsuelos y galpones de gimnasios sin señal 4G o WiFi.
-- Opción de exportación de historial en formato JSON con BOM UTF-8 para respaldo personal.
+### 4. 🧮 Suite de Motores Fisiológicos y Matemáticos (`src/engines/`)
+- **1RM Sub-máximo & Ensamble (`onerm.js`):** 7 fórmulas clásicas (Epley, Brzycki, Lander, Lombardi, Mayhew, O'Conner, Wathan), estimación por ensamble ponderado y escala RIR de Mike Tuchscherer con límites de repeticiones para prevenir sobre-estimaciones.
+- **Calculadora de Discos Olímpica (`plates.js`):** Algoritmo *greedy* exacto para barras de 20 kg, 15 kg, 10 kg, EZ y multipower, con soporte para discos fraccionarios (0.5 a 2.5 kg) y pesados (5 a 25 kg).
+- **Equilibrio Estructural Poliquin & ATG (`structural-balance.js`):** Ratios biomecánicos para identificar eslabones débiles (ej. relación entre Press Plano, Press Militar, Jalón y Curl; o Sentadilla vs. Peso Muerto Rumano) calculando el déficit en kg.
+- **Motor de Sobrecarga Progresiva (`progression.js`):** 9 políticas funcionales puras (`double`, `linear`, `greyskull`, `triple`, `density`, `time`, etc.) que recomiendan ajustes de carga, repeticiones o deload según el rendimiento registrado.
+
+### 5. 📚 Catálogo Unificado openGym (+6.550 Ejercicios)
+- **6.577 ejercicios** catalogados e indexados en español, con equipamiento, músculo objetivo y sinergistas.
+- **6.554 ilustraciones WebP locales** sin dependencias externas de red.
+- **Insignia Clínica:** Los 23 ejercicios clínicos fundamentales de prescripción metabólica conservan su insignia `[Clínico / GLUT4]`, instrucciones anti-valsalva y checklists posturales.
+
+### 6. 🔄 Importación & Exportación Universal (`src/services/importer.js`)
+- **Compatibilidad con Ecosistema Fitness:** Importación fluida de historiales en formato CSV desde **Strong**, **Hevy** y **FitNotes**.
+- **Exportación Segura Excel:** Generación nativa de archivos CSV con BOM UTF-8 (`\uFEFF`) para apertura directa en Microsoft Excel en Windows sin distorsión de caracteres.
+
+### 7. 🤖 Coach Clínico IA & Servidor MCP Local
+- **Coach IA Integrado:** Asistente conversacional en la PWA potenciado por Gemini API (BYOK) con *system prompt* clínico que analiza glucemias, RPE y adaptaciones biomecánicas.
+- **Servidor MCP stdio (`mcp/server.js`):** Conector compatible con el estándar Model Context Protocol (MCP) para Antigravity y Claude Code, exponiendo herramientas para inspeccionar catálogo, estimar 1RM, calcular discos y planificar entrenamientos.
 
 ---
 
@@ -55,18 +69,18 @@ GlucoFit estructura una rutina **Full Body de 3 días por semana (Lunes, Miérco
 
 ---
 
-## 🧪 Arnés de Pruebas Multi-Capa (5 Capas — 75 Tests PASS)
+## 🧪 Arnés de Pruebas Multi-Capa (5 Capas — 111 Tests PASS)
 
 ```bash
 # Ejecutar la suite completa de pruebas:
 pnpm test
 ```
 
-1. **Capa 1 (Unitarias & Fuzzing):** Parseo de glucemia, límites fisiológicos (20-600 mg/dL), semáforo ADA, cálculo de delta glucémico y fuzzing caótico con valores extremos.
-2. **Capa 2 (Integración & Memoria):** Persistencia en `StorageService`, ciclo de sesión activa con `SessionCoach`, cálculo de volumen acumulado (tonnage) y prueba de 100 ciclos sin fugas de memoria.
-3. **Capa 3 (Componentes):** Integridad del catálogo de ejercicios curado (con checklist postural y errores comunes), filtros por grupo muscular, buscador en tiempo real e integridad de rutinas A, B y C.
+1. **Capa 1 (Unitarias & Fuzzing):** Parseo de glucemia, límites fisiológicos (20-600 mg/dL), semáforo ADA, cálculo de delta glucémico, fórmulas de 1RM, calculadora de discos, ratios de balance estructural, políticas de progresión funcional y fuzzing caótico con valores extremos.
+2. **Capa 2 (Integración & Memoria):** Persistencia en `StorageService`, ciclo de sesión activa con `SessionCoach`, cálculo de volumen muscular acumulado, recuperación 48h, renderizado de mapas SVG, importadores CSV de Strong, Hevy y FitNotes, exportación con BOM UTF-8 y prompt del Coach IA.
+3. **Capa 3 (Componentes):** Integridad del catálogo unificado de 6.577 ejercicios (+6.550 requeridos), preservación de los 23 ejercicios clínicos GLUT4 originales, filtros por grupo muscular, buscador en tiempo real e integridad de rutinas A, B y C.
 4. **Capa 4 (Seguridad):** Neutralización XSS en todos los sinks DOM con `Sanitizer`, validación estricta de CSP en `firebase.json` (sin `unsafe-eval`, sin `http://`), regla anti-stale en `/sw.js` y 0 secretos hardcodeados.
-5. **Capa 5 (E2E):** Flujo completo de paciente: Check-in glucémico (145 mg/dL) -> Selección de rutina -> Ejecución de series de prensa con sobrecarga -> Check-out (112 mg/dL) -> Comprobación de -33 mg/dL de descenso GLUT4 y guardado en almacenamiento.
+5. **Capa 5 (E2E):** Flujo completo de paciente: Check-in glucémico (145 mg/dL) -> Selección de rutina -> Ejecución de series de prensa con sobrecarga -> Check-out (112 mg/dL) -> Comprobación de -33 mg/dL de descenso GLUT4, guardado en almacenamiento e iluminación esmeralda en mapa muscular.
 
 ---
 

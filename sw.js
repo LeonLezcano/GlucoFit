@@ -3,7 +3,7 @@
  * Invariante AiAppFactory: Caché atómica versionada, pre-caché y purga inmediata
  */
 
-const CACHE_NAME = 'glucofit-cache-v1.0.02';
+const CACHE_NAME = 'glucofit-cache-v1.0.03';
 const CRITICAL_ASSETS = [
   './',
   './index.html',

@@ -3,6 +3,8 @@
  * Estándar AiAppFactory para preservación de datos sin pérdida ni rescrituras destructivas.
  */
 
+import { exportToExcelCSV } from './importer.js';
+
 const STORAGE_KEY_SESSIONS = 'glucofit_workout_sessions_v1';
 const STORAGE_KEY_SETTINGS = 'glucofit_user_settings_v1';
 const SCHEMA_VERSION = 1;
@@ -17,6 +19,10 @@ let memoryStorage = {
     restTimerSeconds: 75,
     hapticFeedback: true,
     audioBeep: true,
+    progressionPolicy: 'double',
+    defaultBar: 'olympic_men',
+    bodyGender: 'male',
+    bodyMapMode: 'volume',
     schemaVersion: SCHEMA_VERSION
   }
 };
@@ -120,6 +126,47 @@ export const StorageService = {
   },
 
   /**
+   * Importa y fusiona sesiones externas evitando duplicados por ID
+   * @param {Array<object>} importedSessions 
+   * @returns {number} Cantidad de nuevas sesiones agregadas
+   */
+  importSessions(importedSessions = []) {
+    if (!Array.isArray(importedSessions) || importedSessions.length === 0) return 0;
+    const existing = this.getSessions();
+    const map = new Map();
+
+    for (const s of existing) {
+      if (s.id) map.set(s.id, s);
+    }
+
+    let addedCount = 0;
+    for (const s of importedSessions) {
+      if (!s.id || !map.has(s.id)) {
+        const id = s.id || ('sess_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6));
+        map.set(id, { ...s, id });
+        addedCount++;
+      }
+    }
+
+    const merged = Array.from(map.values()).sort((a, b) => {
+      const ta = new Date(a.createdAt || a.timestamp || 0).getTime();
+      const tb = new Date(b.createdAt || b.timestamp || 0).getTime();
+      return tb - ta;
+    });
+
+    memoryStorage.sessions = merged;
+    if (this.isAvailable()) {
+      try {
+        window.localStorage.setItem(STORAGE_KEY_SESSIONS, JSON.stringify(merged));
+      } catch (e) {
+        console.error('[StorageService] Error al persistir sesiones importadas', e);
+      }
+    }
+
+    return addedCount;
+  },
+
+  /**
    * Obtiene la última carga registrada para un ejercicio específico
    * @param {string} exerciseId 
    * @returns {object|null} { weightKg, reps, date }
@@ -128,14 +175,13 @@ export const StorageService = {
     const sessions = this.getSessions();
     for (const sess of sessions) {
       if (Array.isArray(sess.completedExercises)) {
-        const found = sess.completedExercises.find(ex => ex.exerciseId === exerciseId);
+        const found = sess.completedExercises.find(ex => ex.exerciseId === exerciseId || ex.name === exerciseId);
         if (found && Array.isArray(found.sets) && found.sets.length > 0) {
-          // Última serie registrada
           const lastSet = found.sets[found.sets.length - 1];
           return {
-            weightKg: lastSet.weightKg || 0,
+            weightKg: lastSet.weightKg || lastSet.weight || 0,
             reps: lastSet.reps || 0,
-            date: sess.createdAt
+            date: sess.createdAt || sess.timestamp
           };
         }
       }
@@ -144,12 +190,42 @@ export const StorageService = {
   },
 
   /**
+   * Obtiene el historial de series de un ejercicio específico en orden cronológico
+   * @param {string} exerciseId 
+   * @returns {Array<object>}
+   */
+  getExerciseHistory(exerciseId) {
+    const sessions = [...this.getSessions()].reverse(); // Orden cronológico antiguo -> nuevo
+    const history = [];
+
+    for (const sess of sessions) {
+      const list = sess.completedExercises || sess.exercises || [];
+      const found = list.find(ex => ex.exerciseId === exerciseId || ex.name === exerciseId);
+      if (found && Array.isArray(found.sets) && found.sets.length > 0) {
+        history.push({
+          date: sess.date || (sess.createdAt ? sess.createdAt.split('T')[0] : ''),
+          timestamp: sess.createdAt || sess.timestamp,
+          restSeconds: sess.restSeconds || 75,
+          sets: found.sets.map(s => ({
+            weight: s.weightKg || s.weight || 0,
+            reps: s.reps || 0,
+            targetReps: s.targetReps || 10,
+            rir: s.rir || 0
+          }))
+        });
+      }
+    }
+
+    return history;
+  },
+
+  /**
    * Exporta todo el historial en un archivo JSON descargable
    */
   exportDataJSON() {
     const payload = {
       app: 'GlucoFit',
-      version: '1.0.00',
+      version: '1.1.00',
       exportedAt: new Date().toISOString(),
       settings: this.getSettings(),
       sessions: this.getSessions()
@@ -159,6 +235,23 @@ export const StorageService = {
     const a = document.createElement('a');
     a.href = url;
     a.download = `glucofit_backup_${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  },
+
+  /**
+   * Exporta todo el historial en formato CSV compatible con Microsoft Excel (BOM UTF-8)
+   */
+  exportDataCSV() {
+    const sessions = this.getSessions();
+    const csvContent = exportToExcelCSV(sessions);
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `glucofit_historial_${new Date().toISOString().split('T')[0]}.csv`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

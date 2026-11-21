@@ -29,8 +29,16 @@
           <div class="brand-subtitle">Fuerza & Control Glucémico</div>
         </div>
       </div>
-      <div id="wakeLockStatus" class="glut4-pill" title="Screen Wake Lock (Pantalla Activa)">
-        <span class="status-dot">●</span> <span id="wakeLockText">Pantalla</span>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <button id="btnOpenAICoach" class="glut4-pill" title="Coach de IA (Gemini)" style="cursor: pointer; border: 1px solid rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.1);">
+          <span>Coach IA</span>
+        </button>
+        <button id="btnOpenSettings" class="glut4-pill" title="Ajustes & Datos" style="cursor: pointer;">
+          <span>Ajustes</span>
+        </button>
+        <div id="wakeLockStatus" class="glut4-pill" title="Screen Wake Lock (Pantalla Activa)">
+          <span class="status-dot">●</span> <span id="wakeLockText">Pantalla</span>
+        </div>
       </div>
     </header>
 
@@ -52,6 +60,24 @@
         </div>
       </div>
 
+      <!-- Mapa Muscular & Recuperación SVG Interactivo -->
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <div class="card-title" style="margin-bottom: 0;">Mapa Muscular & Recuperación</div>
+          <div style="display: flex; gap: 6px;">
+            <button id="btnMapSide" class="chip active" style="font-size: 0.75rem; padding: 4px 10px; min-height: 32px;">Frente</button>
+            <button id="btnMapMode" class="chip" style="font-size: 0.75rem; padding: 4px 10px; min-height: 32px;">Volumen</button>
+          </div>
+        </div>
+        <p class="card-desc">Monitoreo de recuperación y sobrecarga semanal para optimizar la captación de glucosa por GLUT4.</p>
+        <div id="dashboardBodyMapContainer" style="display: flex; justify-content: center; align-items: center; min-height: 280px; padding: 8px 0;"></div>
+        <div style="display: flex; justify-content: center; gap: 14px; font-size: 0.75rem; color: var(--text-muted); margin-top: 8px; flex-wrap: wrap;">
+          <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #10b981;"></span> Listo (>48h)</span>
+          <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #f59e0b;"></span> En recuperación</span>
+          <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #ef4444;"></span> Fatigado (&lt;24h)</span>
+        </div>
+      </div>
+
       <!-- Selección de Rutina -->
       <div class="card">
         <div class="card-title">Plan Semanal Full Body</div>
@@ -65,9 +91,14 @@
       <div class="card">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <div class="card-title" style="margin-bottom: 0;">Historial Reciente</div>
-          <button id="btnExportData" class="btn btn-secondary" style="width: auto; min-height: 36px; padding: 6px 14px; font-size: 0.78rem;">
-            Exportar JSON
-          </button>
+          <div style="display: flex; gap: 6px;">
+            <button id="btnExportCSV" class="btn btn-secondary" style="width: auto; min-height: 36px; padding: 6px 12px; font-size: 0.75rem;">
+              Excel (CSV)
+            </button>
+            <button id="btnExportData" class="btn btn-secondary" style="width: auto; min-height: 36px; padding: 6px 12px; font-size: 0.75rem;">
+              JSON
+            </button>
+          </div>
         </div>
         <div id="sessionsHistoryList" class="text-muted">
           No hay sesiones previas registradas en este dispositivo.
@@ -75,7 +106,7 @@
       </div>
 
       <div class="repdb-attribution">
-        Ilustraciones biomecánicas: RepDB Exercise Dataset (CC BY) • Criterios clínicos ADA/EASD.
+        Ilustraciones biomecánicas: RepDB & openGym (CC BY) • Criterios clínicos ADA/EASD.
       </div>
     </section>
 
@@ -153,6 +184,17 @@
           <span id="activeExerciseGlut4" class="glut4-pill">GLUT4: 5/5</span>
         </div>
 
+        <!-- Prescripción de Sobrecarga Progresiva -->
+        <div id="activeProgressionBox" style="background: rgba(6, 182, 212, 0.08); border: 1px solid rgba(6, 182, 212, 0.2); border-radius: var(--radius-sm); padding: 10px 12px; margin-bottom: 14px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: var(--cyan-400);">Objetivo de Progresión</span>
+            <span id="active1RMHint" style="font-size: 0.72rem; color: var(--text-muted);">1RM est.: -- kg</span>
+          </div>
+          <div id="activeProgressionReason" style="font-size: 0.82rem; color: var(--text-main); font-weight: 600; margin-top: 4px;">
+            Doble Progresión activa.
+          </div>
+        </div>
+
         <!-- Visor Biomecánico Dual (Animación Start/Peak + Mapa Muscular) -->
         <div class="biomech-viewer" id="activeBiomechViewer">
           <div class="biomech-stage" id="activeStageBox" title="Toca para alternar Inicio / Contracción">
@@ -205,9 +247,12 @@
             <span id="activeTargetRepsHint" style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Objetivo: 10 - 12 repes</span>
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
             <div>
-              <label class="form-label">Carga (kg)</label>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <label class="form-label" style="margin-bottom: 0;">Carga (kg)</label>
+                <button type="button" id="btnShowPlates" style="background: none; border: none; color: var(--emerald-400); font-size: 0.75rem; font-weight: 700; cursor: pointer; text-decoration: underline;">Ver Discos</button>
+              </div>
               <div class="stepper-input-wrap">
                 <button type="button" class="stepper-btn" id="btnWeightMinus" aria-label="Restar 2.5 kg">-2.5</button>
                 <input type="number" id="inputSetWeight" class="stepper-input" value="40" step="2.5" min="0">
@@ -280,6 +325,14 @@
           </div>
         </div>
 
+        <!-- Mapa Muscular de la Sesión (Zonas GLUT4 Iluminadas) -->
+        <div style="background-color: var(--bg-surface); border-radius: var(--radius-md); padding: 12px; margin-bottom: 16px;">
+          <div style="font-size: 0.78rem; font-weight: 700; color: var(--emerald-400); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">
+            Activación Muscular GLUT4 en esta Sesión
+          </div>
+          <div id="checkoutBodyMapContainer" style="display: flex; justify-content: center; align-items: center; min-height: 220px;"></div>
+        </div>
+
         <div class="form-group">
           <label for="inputPostGlucose" class="form-label">Glucemia Post-Entreno (mg/dL)</label>
           <input type="number" id="inputPostGlucose" class="form-input" placeholder="Medición con glucómetro" min="20" max="600" step="1">
@@ -307,11 +360,12 @@
         <p class="card-desc">Consulta la técnica correcta, postura y grupos musculares de cada máquina antes de entrenar.</p>
 
         <div class="search-bar-wrap">
-          <input type="text" id="inputSearchExercises" class="form-input" placeholder="Buscar por ejercicio o músculo..." style="font-size: 0.95rem; min-height: 48px;">
+          <input type="text" id="inputSearchExercises" class="form-input" placeholder="Buscar entre +6.550 ejercicios..." style="font-size: 0.95rem; min-height: 48px;">
         </div>
 
         <div class="category-chips">
           <button class="chip active" data-category="todos">Todos</button>
+          <button class="chip" data-category="clinical" style="border-color: rgba(16, 185, 129, 0.4); color: var(--emerald-400);">⭐ Clínicos GLUT4</button>
           <button class="chip" data-category="piernas">Piernas</button>
           <button class="chip" data-category="espalda">Espalda</button>
           <button class="chip" data-category="pecho">Pecho</button>
@@ -325,6 +379,103 @@
         <!-- Inyectado dinámicamente -->
       </div>
     </section>
+
+    <!-- Modal: CALCULADORA DE DISCOS -->
+    <div id="platesModal" class="rest-timer-modal hidden" style="background: rgba(10, 13, 20, 0.92); z-index: 1000;">
+      <div class="card" style="max-width: 360px; width: 90%; margin: 0 auto; text-align: left;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <div class="card-title" style="margin-bottom: 0;">Discos en Barra</div>
+          <button type="button" id="btnClosePlatesModal" class="chip" style="min-height: 28px; padding: 2px 10px;">✕</button>
+        </div>
+        <div id="platesModalBody" style="font-size: 0.9rem; line-height: 1.5;">
+          <!-- Detalle de discos calculado al vuelo -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: COACH DE IA (GEMINI) -->
+    <div id="aiCoachModal" class="rest-timer-modal hidden" style="background: rgba(10, 13, 20, 0.94); z-index: 1000; justify-content: flex-start; padding: 20px 10px;">
+      <div class="card" style="max-width: 440px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; max-height: 85vh; padding: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px;">
+          <div>
+            <div style="font-weight: 800; font-size: 1.1rem; color: var(--emerald-400);">GlucoCoach IA</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Especialista en Fuerza & Diabetes Tipo 2</div>
+          </div>
+          <button type="button" id="btnCloseAICoachModal" class="chip" style="min-height: 30px; padding: 2px 10px;">✕</button>
+        </div>
+
+        <div id="aiCoachMessages" style="flex: 1; overflow-y: auto; padding: 10px 0; display: flex; flex-direction: column; gap: 10px; min-height: 250px;">
+          <div class="coach-bubble-ai">
+            ¡Hola! Soy tu coach metabólico. Puedo ayudarte con dudas sobre técnica, regulación de cargas o qué hacer según tu nivel de glucosa actual. ¿En qué te ayudo hoy?
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 8px; margin-top: 12px; border-top: 1px solid var(--border-subtle); padding-top: 10px;">
+          <input type="text" id="inputAICoachPrompt" class="form-input" placeholder="Pregunta sobre tu entrenamiento..." style="flex: 1; min-height: 44px; font-size: 0.85rem;">
+          <button id="btnSendAICoach" class="btn btn-primary" style="width: auto; min-height: 44px; padding: 0 16px;">Enviar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: AJUSTES & IMPORTACIÓN DE DATOS -->
+    <div id="settingsModal" class="rest-timer-modal hidden" style="background: rgba(10, 13, 20, 0.92); z-index: 1000; overflow-y: auto; padding: 20px 10px;">
+      <div class="card" style="max-width: 420px; width: 100%; margin: 0 auto; text-align: left;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px;">
+          <div class="card-title" style="margin-bottom: 0;">Ajustes & Motores</div>
+          <button type="button" id="btnCloseSettingsModal" class="chip" style="min-height: 28px; padding: 2px 10px;">✕</button>
+        </div>
+
+        <!-- Política de Progresión -->
+        <div class="form-group">
+          <label class="form-label">Política de Sobrecarga Progresiva</label>
+          <select id="selectProgressionPolicy" class="form-input" style="min-height: 44px;">
+            <option value="double">Doble Progresión (Recomendada: Subir Reps y luego Carga)</option>
+            <option value="linear">Progresión Lineal (+2.5 kg con deload automático)</option>
+            <option value="greyskull">Greyskull LP (2 series rectas + 1 AMRAP al fallo)</option>
+            <option value="density">Densidad (Reducción de descansos antes de subir peso)</option>
+            <option value="off">Sin Progresión Automática (Manual)</option>
+          </select>
+        </div>
+
+        <!-- Barra Estándar -->
+        <div class="form-group">
+          <label class="form-label">Barra Predeterminada para Gimnasio</label>
+          <select id="selectDefaultBar" class="form-input" style="min-height: 44px;">
+            <option value="olympic_men">Barra Olímpica Estándar (20 kg / 45 lb)</option>
+            <option value="olympic_women">Barra Olímpica Femenina (15 kg / 35 lb)</option>
+            <option value="ez_curl">Barra EZ / Z (10 kg / 25 lb)</option>
+            <option value="smith_machine">Máquina Smith (10 kg / 20 lb)</option>
+          </select>
+        </div>
+
+        <!-- Silueta del Mapa Muscular -->
+        <div class="form-group">
+          <label class="form-label">Silueta Anatómica del Mapa</label>
+          <select id="selectBodyGender" class="form-input" style="min-height: 44px;">
+            <option value="male">Masculina</option>
+            <option value="female">Femenina</option>
+          </select>
+        </div>
+
+        <!-- Gemini API Key -->
+        <div class="form-group" style="border-top: 1px solid var(--border-subtle); padding-top: 14px;">
+          <label class="form-label">Google Gemini API Key (Coach IA)</label>
+          <input type="password" id="inputGeminiKey" class="form-input" placeholder="AIzaSy...">
+          <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">Almacenada solo localmente en tu dispositivo (BYOK).</div>
+        </div>
+
+        <!-- Importación Universal CSV -->
+        <div class="form-group" style="border-top: 1px solid var(--border-subtle); padding-top: 14px;">
+          <label class="form-label">Importar Historial (Strong / Hevy / FitNotes)</label>
+          <input type="file" id="inputImportCSV" accept=".csv" class="form-input" style="font-size: 0.8rem; padding: 8px;">
+          <div id="importStatusText" style="font-size: 0.75rem; color: var(--emerald-400); margin-top: 6px;"></div>
+        </div>
+
+        <button id="btnSaveSettings" class="btn btn-primary" style="margin-top: 16px;">
+          Guardar Ajustes
+        </button>
+      </div>
+    </div>
 
     <!-- Barra de Navegación Inferior (Icons SVG nativos sin emojis) -->
     <nav class="bottom-nav no-print">

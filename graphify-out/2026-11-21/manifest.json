@@ -1,0 +1,157 @@
+{
+  "app.js": {
+    "mtime": 1795256751.871484,
+    "ast_hash": "bb26480ff673d9df7125ddec9eebae6e",
+    "semantic_hash": "bb26480ff673d9df7125ddec9eebae6e"
+  },
+  "extra-datasets/hasaneyldrm-exercises-dataset/data/exercises.json": {
+    "mtime": 1795029379.2199914,
+    "ast_hash": "173f304fdd7cd68b27e348c469b1a72f",
+    "semantic_hash": "173f304fdd7cd68b27e348c469b1a72f"
+  },
+  "extra-datasets/hasaneyldrm-exercises-dataset/data/exercises.schema.json": {
+    "mtime": 1795029379.223028,
+    "ast_hash": "9063a172774b990b54f8b90a674ff3ff",
+    "semantic_hash": "9063a172774b990b54f8b90a674ff3ff"
+  },
+  "extra-datasets/repdb-exercise-dataset/exercises.json": {
+    "mtime": 1795029381.2681675,
+    "ast_hash": "a992280af3b6fd833959ce952025f0b7",
+    "semantic_hash": "a992280af3b6fd833959ce952025f0b7"
+  },
+  "firebase.json": {
+    "mtime": 1795029382.086594,
+    "ast_hash": "b198e9a3969e8ed572aeb7e607ec9ebc",
+    "semantic_hash": "b198e9a3969e8ed572aeb7e607ec9ebc"
+  },
+  "manifest.json": {
+    "mtime": 1795029382.0878851,
+    "ast_hash": "9ca6b448b841ba3a7193212a22afae34",
+    "semantic_hash": "9ca6b448b841ba3a7193212a22afae34"
+  },
+  "package.json": {
+    "mtime": 1795256688.4453218,
+    "ast_hash": "e5249509c6ca2a20db0dee93294c471b",
+    "semantic_hash": "e5249509c6ca2a20db0dee93294c471b"
+  },
+  "scripts/bump-version.js": {
+    "mtime": 1795029382.089142,
+    "ast_hash": "22bd6473c40197c9b12def260b0f03cc",
+    "semantic_hash": "22bd6473c40197c9b12def260b0f03cc"
+  },
+  "scripts/serve.js": {
+    "mtime": 1795038234.0161567,
+    "ast_hash": "54d66c07e24afe884a295fb5adc251c2",
+    "semantic_hash": "54d66c07e24afe884a295fb5adc251c2"
+  },
+  "src/data/exercises.js": {
+    "mtime": 1795255754.353583,
+    "ast_hash": "ac8f037459e152bea68f3efa0aa9bc51",
+    "semantic_hash": "ac8f037459e152bea68f3efa0aa9bc51"
+  },
+  "src/data/routines.js": {
+    "mtime": 1795029382.090268,
+    "ast_hash": "76e07bd77c15793ad14d0b9cb293a71b",
+    "semantic_hash": "76e07bd77c15793ad14d0b9cb293a71b"
+  },
+  "src/services/metabolic-guard.js": {
+    "mtime": 1795029382.090917,
+    "ast_hash": "0fa3d80c6cb7a40948841027280292f1",
+    "semantic_hash": "0fa3d80c6cb7a40948841027280292f1"
+  },
+  "src/services/session-coach.js": {
+    "mtime": 1795029382.091514,
+    "ast_hash": "bc2d48d6e4af79c492379ef81b15379e",
+    "semantic_hash": "bc2d48d6e4af79c492379ef81b15379e"
+  },
+  "src/services/storage.js": {
+    "mtime": 1795256064.8510962,
+    "ast_hash": "946690a77df5926485e63d1f269acf3c",
+    "semantic_hash": "946690a77df5926485e63d1f269acf3c"
+  },
+  "src/utils/sanitizer.js": {
+    "mtime": 1795029382.0922625,
+    "ast_hash": "98bc783887b69ae29d9bde8d156c905b",
+    "semantic_hash": "98bc783887b69ae29d9bde8d156c905b"
+  },
+  "sw.js": {
+    "mtime": 1795256688.446453,
+    "ast_hash": "a6fb16d88e5f2ece6feca730b5a68f9d",
+    "semantic_hash": "a6fb16d88e5f2ece6feca730b5a68f9d"
+  },
+  "tests/run_tests.js": {
+    "mtime": 1795256472.8337057,
+    "ast_hash": "7d58a912a9d51a6cafc878a563dcdbc2",
+    "semantic_hash": "7d58a912a9d51a6cafc878a563dcdbc2"
+  },
+  "version.json": {
+    "mtime": 1795256688.444404,
+    "ast_hash": "c489f821a1d2c4aee6097b1f411604ec",
+    "semantic_hash": "c489f821a1d2c4aee6097b1f411604ec"
+  },
+  "mcp/package.json": {
+    "mtime": 1795255988.1013012,
+    "ast_hash": "68fbca1866c41cb7a13fbb1a5e876e2d",
+    "semantic_hash": "68fbca1866c41cb7a13fbb1a5e876e2d"
+  },
+  "mcp/server.js": {
+    "mtime": 1795255974.1815658,
+    "ast_hash": "c8744f038aac7c02626fac223086b090",
+    "semantic_hash": "c8744f038aac7c02626fac223086b090"
+  },
+  "scripts/compile-catalogue.mjs": {
+    "mtime": 1795255687.2454348,
+    "ast_hash": "b3c8323182b7b0e28756df2f10e4031f",
+    "semantic_hash": "b3c8323182b7b0e28756df2f10e4031f"
+  },
+  "src/data/body-paths.js": {
+    "mtime": 1795255842.051711,
+    "ast_hash": "1f60f14238e29227d56c86a1c3f518cf",
+    "semantic_hash": "1f60f14238e29227d56c86a1c3f518cf"
+  },
+  "src/data/exercises-catalogue.js": {
+    "mtime": 1795255739.6811287,
+    "ast_hash": "c4bab3712f27a07175378c8207b4e006",
+    "semantic_hash": "c4bab3712f27a07175378c8207b4e006"
+  },
+  "src/data/exercises-catalogue.json": {
+    "mtime": 1795255739.6303008,
+    "ast_hash": "000720eb2983a262a6b777f85ee9d2dc",
+    "semantic_hash": "000720eb2983a262a6b777f85ee9d2dc"
+  },
+  "src/engines/onerm.js": {
+    "mtime": 1795255779.1444733,
+    "ast_hash": "75fdd5f9aa2b1edcd4d4915ab18f2246",
+    "semantic_hash": "75fdd5f9aa2b1edcd4d4915ab18f2246"
+  },
+  "src/engines/plates.js": {
+    "mtime": 1795255792.0129988,
+    "ast_hash": "42d6b838511735f09ad4166a7a107ce8",
+    "semantic_hash": "42d6b838511735f09ad4166a7a107ce8"
+  },
+  "src/engines/progression.js": {
+    "mtime": 1795255835.9340882,
+    "ast_hash": "fd5bb208b53c876b443d9270bc92e2df",
+    "semantic_hash": "fd5bb208b53c876b443d9270bc92e2df"
+  },
+  "src/engines/structural-balance.js": {
+    "mtime": 1795255808.3307436,
+    "ast_hash": "a8a75ff1eaad914525a4a4b763ec9b16",
+    "semantic_hash": "a8a75ff1eaad914525a4a4b763ec9b16"
+  },
+  "src/services/ai-coach.js": {
+    "mtime": 1795255926.0991313,
+    "ast_hash": "7af98fc250f1dc7da6fbc086be41a1ef",
+    "semantic_hash": "7af98fc250f1dc7da6fbc086be41a1ef"
+  },
+  "src/services/importer.js": {
+    "mtime": 1795255899.5346115,
+    "ast_hash": "693c45e756e7e8d43d60550f496aca54",
+    "semantic_hash": "693c45e756e7e8d43d60550f496aca54"
+  },
+  "src/services/muscle-map.js": {
+    "mtime": 1795256382.5864363,
+    "ast_hash": "8e200143124b90e1966646a80604c1e5",
+    "semantic_hash": "8e200143124b90e1966646a80604c1e5"
+  }
+}

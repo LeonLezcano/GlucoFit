@@ -1,0 +1,16 @@
+{
+  "name": "glucofit-mcp",
+  "version": "1.1.00",
+  "description": "MCP (Model Context Protocol) Server para GlucoFit — Conecta asistentes de IA con tu historial y prescripción clínica de fuerza",
+  "type": "module",
+  "main": "server.js",
+  "bin": {
+    "glucofit-mcp": "server.js"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["mcp", "glucofit", "fitness", "diabetes", "ai-coach"],
+  "author": "Leon Lezcano",
+  "license": "MIT"
+}

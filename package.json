@@ -1,6 +1,6 @@
 {
   "name": "glucofit",
-  "version": "1.0.02",
+  "version": "1.0.03",
   "description": "Coach inteligente de técnica y fuerza en gimnasio para Diabetes Tipo 2",
   "type": "module",
   "scripts": {
